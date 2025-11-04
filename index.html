@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo de Site de Eventos (Atualizado)</title>
+    <title>Modelo de Site de Eventos (Layout Contínuo)</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +16,14 @@
 
     <style>
         :root {
-            --cor-fundo-pagina: #fdf0e9; /* Bege/rosa muito claro do fundo */
-            --cor-bloco-principal: #42d1db; /* Azul-petróleo/ciano */
-            --cor-placeholder: #fdd8d8; /* Rosa claro dos placeholders */
-            --cor-texto-borda: #1e1e1e;   /* Cor escura (quase preto) para textos e bordas */
+            --cor-fundo-pagina: #fdf0e9;
+            /* Bege/rosa muito claro do fundo */
+            --cor-bloco-principal: #42d1db;
+            /* Azul-petróleo/ciano */
+            --cor-placeholder: #;
+            /* Rosa claro dos placeholders */
+            --cor-texto-borda: #1e1e1e;
+            /* Cor escura (quase preto) para textos e bordas */
         }
 
         body {
@@ -33,14 +38,35 @@
         .content-block {
             background-color: var(--cor-bloco-principal);
             padding: 1.5rem;
-            border-radius: 15px;
             border: 3px solid var(--cor-texto-borda);
-            margin-bottom: 1.5rem;
+            /* margin-bottom: 1.5rem; */
+            /* REMOVIDO para juntar os blocos */
+            border-radius: 0;
+            /* Resetado para aplicar dinamicamente */
         }
+
+        /* Remove a borda superior dos blocos empilhados para evitar borda dupla */
+        .content-block+.content-block {
+            border-top: none;
+        }
+
+        /* Arredonda SOMENTE o topo do PRIMEIRO bloco */
+        .content-block:first-child {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Arredonda SOMENTE a base do ÚLTIMO bloco */
+        .content-block:last-child {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
 
         /* ----- Navbar ----- */
         .navbar-custom {
-            padding: 0.5rem 1.5rem; /* Ajuste para navbar */
+            padding: 0.5rem 1.5rem;
+            /* Ajuste para navbar */
         }
 
         .navbar-custom .navbar-brand,
@@ -49,7 +75,7 @@
             font-size: 1.75rem;
             font-weight: bold;
         }
-        
+
         .navbar-custom .nav-link:hover {
             color: #555 !important;
         }
@@ -69,7 +95,7 @@
             font-size: 1.5rem;
             font-weight: bold;
         }
-        
+
         .search-bar-custom .form-control:focus {
             box-shadow: none;
             background: transparent;
@@ -89,20 +115,20 @@
             border: 3px solid var(--cor-texto-borda);
             border-radius: 50%;
             margin: 0 auto 0.5rem auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
         }
-        
+
         .filter-section p {
             font-size: 1.2rem;
             margin-bottom: 0;
         }
 
-        /* ----- Próximo Evento ----- */
-        .main-event-title {
-            font-size: clamp(3rem, 10vw, 6rem); /* Tamanho de fonte responsivo */
-            font-weight: bold;
-            text-align: center;
-        }
 
+        /* A caixa do logo foi removida, mas o estilo pode ser útil para outros elementos */
         .logo-box {
             width: 180px;
             height: 100px;
@@ -114,15 +140,34 @@
             justify-content: center;
             font-size: 2rem;
         }
-        
+
+        .main-event-info {
+            /* ---- ADICIONE/MODIFIQUE ISTO ---- */
+            position: absolute;
+            /* Tira o texto do fluxo normal */
+            bottom: 0;
+            /* Posiciona 1.5rem de baixo */
+            left: 0;
+            /* Estica de ponta a ponta */
+            right: 0;
+            /* Estica de ponta a ponta */
+            text-align: center;
+            /* Centraliza o texto */
+
+            /* ---- ESTAS LINHAS PODEM CONTINUAR IGUAIS ---- */
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        /* As regras para h3 e p não precisam mudar */
         .main-event-info h3 {
             font-size: 2.5rem;
             margin-bottom: 0;
         }
-        
+
         .main-event-info p {
-             font-size: 1.5rem;
-             margin-bottom: 0;
+            font-size: 1.5rem;
+            margin-bottom: 0;
         }
 
         /* ----- Grid de Eventos ----- */
@@ -143,7 +188,7 @@
             font-size: 1.8rem;
             font-weight: bold;
         }
-        
+
         .event-card h3 {
             font-size: 2rem;
             margin-bottom: 0;
@@ -162,7 +207,7 @@
             font-size: 1.8rem;
             margin: 0 auto 0.5rem auto;
         }
-        
+
         .footer-icon-circle {
             width: 80px;
             height: 80px;
@@ -177,12 +222,14 @@
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container mt-3">
+    <div class="container mt-3 mb-3">
+
         <nav class="navbar navbar-expand-lg content-block navbar-custom">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Logo</a>
+                <a class="navbar-brand" href="#"><img src="Assets/logo.png" height="75px" width="auto"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -214,9 +261,7 @@
                 </div>
             </div>
         </nav>
-    </div>
 
-    <div class="container">
         <div class="content-block filter-section">
             <div class="row align-items-center text-center">
                 <div class="col-md-6 mb-3 mb-md-0">
@@ -227,38 +272,34 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="col-6 col-md-3">
-                    <div class="icon-circle"></div>
+                    <a href="#">
+                        <div class="icon-circle"><img src="Assets/passado_icon.png" width="auto" height="60"></div>
+                    </a>
                     <p>Eventos Passados</p>
+
                 </div>
-                
+
                 <div class="col-6 col-md-3">
-                    <div class="icon-circle"></div>
+                    <a href="#">
+                        <div class="icon-circle"><img src="Assets/calender_icon.png" width="auto" height="60"></div>
+                    </a>
                     <p>Calendário</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <main class="content-block">
-            <h1 class="main-event-title">Foto Proximo Evento</h1>
-            
-            <div class="d-flex justify-content-between align-items-end mt-4 flex-wrap">
-                <div class="text-center mb-3 mb-md-0">
-                    <div class="logo-box"><span>Logo</span></div>
-                </div>
-                
-                <div class="text-end main-event-info">
-                    <p>Data Evento</p>
-                    <h3>Nome evento</h3>
-                </div>
+        <main class="content-block" style="padding: 0; position: relative; overflow: hidden;">
+            <img src="Assets/ENSINO MÉDIO.png" width="100%" height="auto" style="display: block;">
+
+            <div class="main-event-info">
+                <p>Data Evento</p>
+                <h3>Nome evento</h3>
             </div>
-        </main>
-    </div>
 
-    <div class="container">
+        </main>
+
         <section class="content-block">
             <div class="row">
                 <div class="col-lg-4 col-md-6">
@@ -315,7 +356,7 @@
                             <span>Foto Evento</span>
                         </div>
                         <div class="card-body">
-                            <p class="card-text mb-0">Data Evento</p>
+                            <p class="card-text mb-0">Data Evento</op>
                             <h3 class="card-title">Nome evento</h3>
                         </div>
                     </div>
@@ -334,23 +375,20 @@
                 </div>
             </div>
         </section>
-    </div>
 
-    <div class="container">
         <footer class="content-block">
             <div class="row align-items-center text-center">
                 <div class="col-md-4 mb-3 mb-md-0">
-                    <div class="footer-logo-box"><span>Logo</span></div>
-                    <h4>Nome escola</h4>
+                    <img src="Assets/logo.png" height="auto" width="35%">
                 </div>
-                
+
                 <div class="col-md-4 mb-3 mb-md-0">
                     <h3>Parcerias</h3>
                     <p class="mb-0">Parceria 1</p>
                     <p class="mb-0">Parceria 2</p>
-                    <p class="mt-3">Feito por: .....</p>
+                    <p class="mt-3">Feito por: Lorenzo Dias</p>
                 </div>
-                
+
                 <div class="col-md-4">
                     <div class="footer-icon-circle">
                         <span>Icone</span>
@@ -358,8 +396,9 @@
                 </div>
             </div>
         </footer>
-    </div>
 
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
