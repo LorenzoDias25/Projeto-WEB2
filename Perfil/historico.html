@@ -1,309 +1,366 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Histórico</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        :root {
-            --cor-fundo-pagina: #fdf0e9; /* Bege/rosa muito claro do fundo */
-            --cor-bloco-principal: #42d1db; /* Azul-petróleo/ciano */
-            --cor-placeholder: #fdd8d8; /* Rosa claro dos placeholders */
-            --cor-texto-borda: #1e1e1e;   /* Cor escura (quase preto) para textos e bordas */
-        }
+      :root {
+        --cor-fundo-pagina: #fdf0e9; /* Bege/rosa muito claro do fundo */
+        --cor-bloco-principal: #42d1db; /* Azul-petróleo/ciano */
+        --cor-placeholder: #fdd8d8; /* Rosa claro dos placeholders */
+        --cor-texto-borda: #1e1e1e; /* Cor escura (quase preto) para textos e bordas */
+      }
 
-        body {
-            font-family: 'Patrick Hand', cursive;
-            background-color: var(--cor-fundo-pagina);
-            color: var(--cor-texto-borda);
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
+      body {
+        font-family: "Patrick Hand", cursive;
+        background-color: var(--cor-fundo-pagina);
+        color: var(--cor-texto-borda);
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
 
-        /* ----- Lógica dos Blocos de Conteúdo ----- */
-        .content-block {
-            background-color: var(--cor-bloco-principal);
-            padding: 1.5rem;
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 0;
-        }
+      /* ----- Lógica dos Blocos de Conteúdo ----- */
+      .content-block {
+        background-color: var(--cor-bloco-principal);
+        padding: 1.5rem;
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 0;
+      }
 
-        /* Remove a borda superior dos blocos empilhados */
-        .content-block + .content-block {
-            border-top: none;
-        }
-        
-        /* Arredonda SOMENTE o topo do PRIMEIRO bloco (o navbar) */
-        .container > .content-block:first-child {
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
+      /* Remove a borda superior dos blocos empilhados */
+      .content-block + .content-block {
+        border-top: none;
+      }
 
-        /* Arredonda SOMENTE a base do ÚLTIMO bloco (a tabela) */
-        .container > .content-block:last-child {
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
+      /* Arredonda SOMENTE o topo do PRIMEIRO bloco (o navbar) */
+      .container > .content-block:first-child {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
 
-        /* ----- Navbar ----- */
-        .navbar-custom {
-            padding: 0.5rem 1.5rem;
-        }
+      /* Arredonda SOMENTE a base do ÚLTIMO bloco (a tabela) */
+      .container > .content-block:last-child {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
 
-        .navbar-custom .navbar-brand,
-        .navbar-custom .nav-link {
-            color: var(--cor-texto-borda) !important;
-            font-size: 1.75rem;
-            font-weight: bold;
-        }
-        
-        .navbar-custom .nav-link:hover {
-            color: #555 !important;
-        }
+      /* ----- Navbar ----- */
+      .navbar-custom {
+        padding: 0.5rem 1.5rem;
+      }
 
-        /* ----- Barra de Busca ----- */
-        .search-bar-custom {
-            background-color: white;
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 15px;
-            padding: 0.25rem 0.5rem;
-        }
+      .navbar-custom .navbar-brand,
+      .navbar-custom .nav-link {
+        color: var(--cor-texto-borda) !important;
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
 
-        .search-bar-custom .form-control {
-            border: none;
-            background: transparent;
-            font-family: 'Patrick Hand', cursive;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .search-bar-custom .form-control:focus {
-            box-shadow: none;
-            background: transparent;
-        }
+      .navbar-custom .nav-link:hover {
+        color: #555 !important;
+      }
 
-        .search-bar-custom .btn {
-            border: none;
-            background: transparent;
-            font-size: 1.5rem;
-            color: var(--cor-texto-borda);
-        }
+      /* ----- Barra de Busca ----- */
+      .search-bar-custom {
+        background-color: white;
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 15px;
+        padding: 0.25rem 0.5rem;
+      }
 
-        /* ----- Filtros (Radio Buttons) ----- */
-        .filter-group {
-            font-size: 1.5rem;
-        }
+      .search-bar-custom .form-control {
+        border: none;
+        background: transparent;
+        font-family: "Patrick Hand", cursive;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
 
-        .form-check-input {
-            border: 2px solid var(--cor-texto-borda);
-        }
-        .form-check-input:checked {
-            background-color: var(--cor-texto-borda);
-            border-color: var(--cor-texto-borda);
-        }
+      .search-bar-custom .form-control:focus {
+        box-shadow: none;
+        background: transparent;
+      }
 
-        /* ----- Tabela Customizada ----- */
-        
-        /* 1. O 'table-scrollable' é o "design" (borda e scroll vertical) */
-        .table-scrollable {
-            max-height: 400px; /* Altura máxima antes de rolar */
-            overflow-y: auto;  /* Scroll vertical */
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 15px;
-            overflow: auto; /* Para "cortar" os cantos da tabela interna */
-        }
-        
-        /* 2. 'table-responsive' cuida do scroll horizontal (aninhado) */
+      .search-bar-custom .btn {
+        border: none;
+        background: transparent;
+        font-size: 1.5rem;
+        color: var(--cor-texto-borda);
+      }
 
-        /* 3. A 'table-custom' (tabela) não tem bordas próprias */
-        .table-custom {
-            background-color: transparent !important;
-            color: var(--cor-texto-borda) !important;
-        }
-        
-        /* 4. Células */
-        .table-custom th,
-        .table-custom td {
-            background-color: transparent !important;
-            color: var(--cor-texto-borda) !important;
-            border: none; 
-            font-size: 1.4rem;
-            padding: 0.75rem;
-            vertical-align: middle;
-        }
-        
-        /* 5. Cabeçalho (índice) Fixo */
-        .table-custom thead th {
-            border-bottom: 3px solid var(--cor-texto-borda); 
-            font-size: 1.6rem;
-            
-            position: sticky;
-            top: 0; 
-            z-index: 10; 
-            
-            background-color: var(--cor-bloco-principal) !important; 
-        }
+      /* ----- Filtros (Radio Buttons) ----- */
+      .filter-group {
+        font-size: 1.5rem;
+      }
+
+      .form-check-input {
+        border: 2px solid var(--cor-texto-borda);
+      }
+      .form-check-input:checked {
+        background-color: var(--cor-texto-borda);
+        border-color: var(--cor-texto-borda);
+      }
+
+      /* ----- Tabela Customizada ----- */
+
+      /* 1. O 'table-scrollable' é o "design" (borda e scroll vertical) */
+      .table-scrollable {
+        max-height: 400px; /* Altura máxima antes de rolar */
+        overflow-y: auto; /* Scroll vertical */
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 15px;
+        overflow: auto; /* Para "cortar" os cantos da tabela interna */
+      }
+
+      /* 2. 'table-responsive' cuida do scroll horizontal (aninhado) */
+
+      /* 3. A 'table-custom' (tabela) não tem bordas próprias */
+      .table-custom {
+        background-color: transparent !important;
+        color: var(--cor-texto-borda) !important;
+      }
+
+      /* 4. Células */
+      .table-custom th,
+      .table-custom td {
+        background-color: transparent !important;
+        color: var(--cor-texto-borda) !important;
+        border: none;
+        font-size: 1.4rem;
+        padding: 0.75rem;
+        vertical-align: middle;
+      }
+
+      /* 5. Cabeçalho (índice) Fixo */
+      .table-custom thead th {
+        border-bottom: 3px solid var(--cor-texto-borda);
+        font-size: 1.6rem;
+
+        position: sticky;
+        top: 0;
+        z-index: 10;
+
+        background-color: var(--cor-bloco-principal) !important;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="container mt-3 mb-3">
+      <nav class="navbar navbar-expand-lg content-block navbar-custom">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"
+            ><img
+              src="Assets/logo.png"
+              style="height: 60px; width: auto"
+              alt="Logo"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Eventos</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Secretaria
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Ação 1</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Adm
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Painel</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Perfil/perfil.html">Perfil</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section class="content-block">
+        <div class="input-group search-bar-custom mb-3">
+          <input type="text" class="form-control" placeholder="TextField" />
+          <button class="btn" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
 
-    <div class="container mt-3 mb-3"> 
+        <div class="row filter-group align-items-center">
+          <div class="col-auto">Pesquisar por:</div>
+          <div class="col-auto">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="pesquisarPor"
+                id="radioTurma"
+                value="turma"
+                checked
+              />
+              <label class="form-check-label" for="radioTurma">Turma</label>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="pesquisarPor"
+                id="radioSemestre"
+                value="semestre"
+              />
+              <label class="form-check-label" for="radioSemestre"
+                >Semestre</label
+              >
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="pesquisarPor"
+                id="radioDisciplina"
+                value="disciplina"
+              />
+              <label class="form-check-label" for="radioDisciplina"
+                >Disciplina</label
+              >
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="pesquisarPor"
+                id="radioNota"
+                value="nota"
+              />
+              <label class="form-check-label" for="radioNota">Nota</label>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="pesquisarPor"
+                id="radioStatus"
+                value="status"
+              />
+              <label class="form-check-label" for="radioStatus">Status</label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content-block text-center">
+        <h2 style="font-size: 2.5rem">Histórico</h2>
 
-        <nav class="navbar navbar-expand-lg content-block navbar-custom">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="Assets/logo.png" style="height: 60px; width: auto;" alt="Logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Eventos</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Secretaria
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Ação 1</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Adm
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Painel</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Perfil/perfil.html">Perfil</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <section class="content-block">
-            <div class="input-group search-bar-custom mb-3">
-                <input type="text" class="form-control" placeholder="TextField">
-                <button class="btn" type="button">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-            
-            <div class="row filter-group align-items-center">
-                <div class="col-auto">
-                    Pesquisar por:
-                </div>
-                <div class="col-auto">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="pesquisarPor" id="radioTurma" value="turma" checked>
-                        <label class="form-check-label" for="radioTurma">Turma</label>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="pesquisarPor" id="radioSemestre" value="semestre">
-                        <label class="form-check-label" for="radioSemestre">Semestre</label>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="pesquisarPor" id="radioDisciplina" value="disciplina">
-                        <label class="form-check-label" for="radioDisciplina">Disciplina</label>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="pesquisarPor" id="radioNota" value="nota">
-                        <label class="form-check-label" for="radioNota">Nota</label>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="pesquisarPor" id="radioStatus" value="status">
-                        <label class="form-check-label" for="radioStatus">Status</label>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="content-block text-center">
-            
-            <h2 style="font-size: 2.5rem;">Histórico</h2>
-
-            <div class="mt-3 table-scrollable">
-    
-                <div class="table-responsive">
-            
-                    <table class="table table-custom text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">Turma</th>
-                                <th scope="col">Semestre</th>
-                                <th scope="col">Disciplina</th>
-                                <th scope="col">Nota</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>T-01</td>
-                                <td>2025/1</td>
-                                <td>Banco de Dados</td>
-                                <td>9.0</td>
-                                <td>Aprovado</td>
-                            </tr>
-                            <tr>
-                                <td>T-01</td>
-                                <td>2025/1</td>
-                                <td>Programação I</td>
-                                <td>8.5</td>
-                                <td>Aprovado</td>
-                            </tr>
-                            <tr>
-                                <td>T-02</td>
-                                <td>2025/2</td>
-                                <td>Redes de Computadores</td>
-                                <td>7.0</td>
-                                <td>Aprovado</td>
-                            </tr>
-                            <tr>
-                                <td>T-02</td>
-                                <td>2025/2</td>
-                                <td>Engenharia de Software</td>
-                                <td>10.0</td>
-                                <td>Aprovado</td>
-                            </tr>
-                            <tr>
-                                <td>T-01</td>
-                                <td>2024/2</td>
-                                <td>Lógica de Programação</td>
-                                <td>9.5</td>
-                                <td>Aprovado</td>
-                            </tr>
-                            <tr>
-                                <td>T-01</td>
-                                <td>2024/2</td>
-                                <td>Arquitetura de Computadores</td>
-                                <td>8.0</td>
-                                <td>Aprovado</td>
-                            </tr>
-                        </tbody>
-                    </table>
-            
-                </div>
-            </div>
-
-        </section>
-        </div> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        <div class="mt-3 table-scrollable table-responsive">
+          <table class="table table-custom text-center">
+            <thead>
+              <tr>
+                <th scope="col">Turma</th>
+                <th scope="col">Semestre</th>
+                <th scope="col">Disciplina</th>
+                <th scope="col">Nota</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>T-01</td>
+                <td>2025/1</td>
+                <td>Banco de Dados</td>
+                <td>9.0</td>
+                <td>Aprovado</td>
+              </tr>
+              <tr>
+                <td>T-01</td>
+                <td>2025/1</td>
+                <td>Programação I</td>
+                <td>8.5</td>
+                <td>Aprovado</td>
+              </tr>
+              <tr>
+                <td>T-02</td>
+                <td>2025/2</td>
+                <td>Redes de Computadores</td>
+                <td>7.0</td>
+                <td>Aprovado</td>
+              </tr>
+              <tr>
+                <td>T-02</td>
+                <td>2025/2</td>
+                <td>Engenharia de Software</td>
+                <td>10.0</td>
+                <td>Aprovado</td>
+              </tr>
+              <tr>
+                <td>T-01</td>
+                <td>2024/2</td>
+                <td>Lógica de Programação</td>
+                <td>9.5</td>
+                <td>Aprovado</td>
+              </tr>
+              <tr>
+                <td>T-01</td>
+                <td>2024/2</td>
+                <td>Arquitetura de Computadores</td>
+                <td>8.0</td>
+                <td>Aprovado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
