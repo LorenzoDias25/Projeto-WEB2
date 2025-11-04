@@ -1,375 +1,503 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel de Usuários</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        :root {
-            --cor-fundo-pagina: #fdf0e9; /* Bege/rosa muito claro do fundo */
-            --cor-bloco-principal: #42d1db; /* Azul-petróleo/ciano */
-            --cor-placeholder: #fdd8d8; /* Rosa claro dos placeholders */
-            --cor-texto-borda: #1e1e1e;   /* Cor escura (quase preto) para textos e bordas */
-        }
+      :root {
+        --cor-fundo-pagina: #fdf0e9; /* Bege/rosa muito claro do fundo */
+        --cor-bloco-principal: #42d1db; /* Azul-petróleo/ciano */
+        --cor-placeholder: #fdd8d8; /* Rosa claro dos placeholders */
+        --cor-texto-borda: #1e1e1e; /* Cor escura (quase preto) para textos e bordas */
+      }
 
-        body {
-            font-family: 'Patrick Hand', cursive;
-            background-color: var(--cor-fundo-pagina);
-            color: var(--cor-texto-borda);
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
+      body {
+        font-family: "Patrick Hand", cursive;
+        background-color: var(--cor-fundo-pagina);
+        color: var(--cor-texto-borda);
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
 
-        /* ----- Lógica dos Blocos de Conteúdo ----- */
-        .content-block {
-            background-color: var(--cor-bloco-principal);
-            padding: 1.5rem;
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 0;
-        }
-        .content-block + .content-block { border-top: none; }
-        .container > .content-block:first-child {
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-        .container > .content-block:last-child {
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
+      /* ----- Lógica dos Blocos de Conteúdo ----- */
+      .content-block {
+        background-color: var(--cor-bloco-principal);
+        padding: 1.5rem;
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 0;
+      }
+      .content-block + .content-block {
+        border-top: none;
+      }
+      .container > .content-block:first-child {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+      .container > .content-block:last-child {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+      }
 
-        /* ----- Navbar ----- */
-        .navbar-custom { padding: 0.5rem 1.5rem; }
-        .navbar-custom .navbar-brand,
-        .navbar-custom .nav-link {
-            color: var(--cor-texto-borda) !important;
-            font-size: 1.75rem;
-            font-weight: bold;
-        }
-        .navbar-custom .nav-link:hover { color: #555 !important; }
+      /* ----- Navbar ----- */
+      .navbar-custom {
+        padding: 0.5rem 1.5rem;
+      }
+      .navbar-custom .navbar-brand,
+      .navbar-custom .nav-link {
+        color: var(--cor-texto-borda) !important;
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
+      .navbar-custom .nav-link:hover {
+        color: #555 !important;
+      }
 
-        /* ----- Barra de Busca ----- */
-        .search-bar-custom {
-            background-color: white;
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 15px;
-            padding: 0.25rem 0.5rem;
-        }
-        .search-bar-custom .form-control {
-            border: none;
-            background: transparent;
-            font-family: 'Patrick Hand', cursive;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .search-bar-custom .form-control:focus { box-shadow: none; background: transparent; }
-        .search-bar-custom .btn {
-            border: none; background: transparent;
-            font-size: 1.5rem; color: var(--cor-texto-borda);
-        }
+      /* ----- Barra de Busca ----- */
+      .search-bar-custom {
+        background-color: white;
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 15px;
+        padding: 0.25rem 0.5rem;
+      }
+      .search-bar-custom .form-control {
+        border: none;
+        background: transparent;
+        font-family: "Patrick Hand", cursive;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .search-bar-custom .form-control:focus {
+        box-shadow: none;
+        background: transparent;
+      }
+      .search-bar-custom .btn {
+        border: none;
+        background: transparent;
+        font-size: 1.5rem;
+        color: var(--cor-texto-borda);
+      }
 
-        /* ----- Filtros (Radio Buttons) ----- */
-        .filter-group { font-size: 1.5rem; }
-        .form-check-input { border: 2px solid var(--cor-texto-borda); }
-        .form-check-input:checked {
-            background-color: var(--cor-texto-borda);
-            border-color: var(--cor-texto-borda);
-        }
+      /* ----- Filtros (Radio Buttons) ----- */
+      .filter-group {
+        font-size: 1.5rem;
+      }
+      .form-check-input {
+        border: 2px solid var(--cor-texto-borda);
+      }
+      .form-check-input:checked {
+        background-color: var(--cor-texto-borda);
+        border-color: var(--cor-texto-borda);
+      }
 
-        /* ----- Tabela Customizada (reutilizada) ----- */
-        .table-scrollable {
-            max-height: 400px;
-            overflow-y: auto;
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        .table-custom {
-            background-color: transparent !important;
-            color: var(--cor-texto-borda) !important;
-        }
-        .table-custom th, .table-custom td {
-            background-color: transparent !important;
-            color: var(--cor-texto-borda) !important;
-            border: none; 
-            font-size: 1.2rem; /* Fonte menor para caber mais colunas */
-            padding: 0.75rem;
-            vertical-align: middle;
-        }
-        .table-custom thead th {
-            border-bottom: 3px solid var(--cor-texto-borda); 
-            font-size: 1.4rem;
-            position: sticky; top: 0; z-index: 10; 
-            background-color: var(--cor-bloco-principal) !important; 
-        }
+      /* ----- Tabela Customizada (reutilizada) ----- */
+      .table-scrollable {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      .table-custom {
+        background-color: transparent !important;
+        color: var(--cor-texto-borda) !important;
+      }
+      .table-custom th,
+      .table-custom td {
+        background-color: transparent !important;
+        color: var(--cor-texto-borda) !important;
+        border: none;
+        font-size: 1.2rem; /* Fonte menor para caber mais colunas */
+        padding: 0.75rem;
+        vertical-align: middle;
+      }
+      .table-custom thead th {
+        border-bottom: 3px solid var(--cor-texto-borda);
+        font-size: 1.4rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: var(--cor-bloco-principal) !important;
+      }
 
-        /* ----- Botões de Ação da Tabela ----- */
-        .action-buttons {
-            border-top: 3px solid var(--cor-texto-borda);
-            padding-top: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .btn-custom {
-            font-family: 'Patrick Hand', cursive;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border: 3px solid var(--cor-texto-borda);
-            background-color: var(--cor-placeholder);
-            color: var(--cor-texto-borda);
-            border-radius: 10px;
-        }
-        .btn-custom:hover {
-             background-color: #fbc0c0;
-        }
+      /* ----- Botões de Ação da Tabela ----- */
+      .action-buttons {
+        border-top: 3px solid var(--cor-texto-borda);
+        padding-top: 1rem;
+        margin-top: 1rem;
+      }
 
-        /* ----- Formulário de Endereço (Direita) ----- */
-        .address-form-box {
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 15px;
-            padding: 1.5rem;
-        }
-        
-        .address-form-box .form-control {
-             font-family: 'Patrick Hand', cursive;
-             font-weight: bold;
-             font-size: 1.3rem;
-             border: 3px solid var(--cor-texto-borda);
-             border-radius: 10px;
-        }
-        
-        /* Estilo para campos readonly */
-        .address-form-box .form-control[readonly] {
-            background-color: #eee;
-            opacity: 0.7;
-        }
-        
-        .address-form-box .btn {
-            font-family: 'Patrick Hand', cursive;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border: 3px solid var(--cor-texto-borda);
-            border-radius: 10px;
-            width: 100%;
-        }
+      .btn-custom {
+        font-family: "Patrick Hand", cursive;
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: 3px solid var(--cor-texto-borda);
+        background-color: var(--cor-placeholder);
+        color: var(--cor-texto-borda);
+        border-radius: 10px;
+      }
+      .btn-custom:hover {
+        background-color: #fbc0c0;
+      }
 
+      /* ----- Formulário de Endereço (Direita) ----- */
+      .address-form-box {
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 15px;
+        padding: 1.5rem;
+      }
+
+      .address-form-box .form-control {
+        font-family: "Patrick Hand", cursive;
+        font-weight: bold;
+        font-size: 1.3rem;
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 10px;
+      }
+
+      /* Estilo para campos readonly */
+      .address-form-box .form-control[readonly] {
+        background-color: #eee;
+        opacity: 0.7;
+      }
+
+      .address-form-box .btn {
+        font-family: "Patrick Hand", cursive;
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 10px;
+        width: 100%;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="container mt-3 mb-3">
+      <nav class="navbar navbar-expand-lg content-block navbar-custom">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"
+            ><img
+              src="/Assets/logo.png"
+              style="height: 75px; width: auto"
+              alt="Logo"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/Evento/index.html">Eventos</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Secretaria
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Ação 1</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Adm
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="/Adm/usuario.html"
+                      >Usuários</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" href="#">Funcionários</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Perfil/perfil.html">Perfil</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section class="content-block">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="input-group search-bar-custom mb-3">
+              <input type="text" class="form-control" placeholder="TextField" />
+              <button class="btn" type="button">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
 
-    <div class="container mt-3 mb-3"> 
+            <div class="row filter-group align-items-center">
+              <div class="col-auto">Pesquisar por:</div>
+              <div class="col-auto">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="pesquisarPor"
+                    id="radioNome"
+                    value="nome"
+                    checked
+                  />
+                  <label class="form-check-label" for="radioNome">Nome</label>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="pesquisarPor"
+                    id="radioEmail"
+                    value="email"
+                  />
+                  <label class="form-check-label" for="radioEmail">email</label>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="pesquisarPor"
+                    id="radioCodigo"
+                    value="codigo"
+                  />
+                  <label class="form-check-label" for="radioCodigo"
+                    >Codigo</label
+                  >
+                </div>
+              </div>
+            </div>
 
-        <nav class="navbar navbar-expand-lg content-block navbar-custom">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="Assets/logo.png" style="height: 60px; width: auto;" alt="Logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
+            <div class="row filter-group align-items-center mb-3">
+              <div class="col-auto">Ordenar por:</div>
+              <div class="col-auto">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="ordenarPor"
+                    id="radioAZ"
+                    value="az"
+                    checked
+                  />
+                  <label class="form-check-label" for="radioAZ">A-Z</label>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="ordenarPor"
+                    id="radioZA"
+                    value="za"
+                  />
+                  <label class="form-check-label" for="radioZA">Z-A</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-scrollable">
+              <div class="table-responsive">
+                <table class="table table-custom text-center table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Codigo</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Nascimento</th>
+                      <th scope="col">Cargo</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-usuario-id="123" style="cursor: pointer">
+                      <td>João da Silva</td>
+                      <td>12345</td>
+                      <td>joao@email.com</td>
+                      <td>10/05/1990</td>
+                      <td>Aluno</td>
+                      <td>Ativo</td>
+                    </tr>
+                    <tr>
+                      <td>Maria Oliveira</td>
+                      <td>54321</td>
+                      <td>maria@email.com</td>
+                      <td>15/08/1992</td>
+                      <td>Aluno</td>
+                      <td>Ativo</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between action-buttons">
+              <button class="btn btn-custom">Cadastrar</button>
+              <button class="btn btn-custom">Editar</button>
+              <button class="btn btn-custom">Desativar</button>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="address-form-box">
+              <h3 class="text-center" style="font-size: 2rem">Endereço</h3>
+
+              <form id="formEndereco">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control address-field"
+                    id="inputRua"
+                    placeholder="Rua"
+                    readonly
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control address-field"
+                    id="inputBairro"
+                    placeholder="Bairro"
+                    readonly
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control address-field"
+                    id="inputCidade"
+                    placeholder="Cidade"
+                    readonly
+                  />
+                </div>
+                <div class="row mb-3">
+                  <div class="col-6">
+                    <input
+                      type="text"
+                      class="form-control address-field"
+                      id="inputNumero"
+                      placeholder="Numero"
+                      readonly
+                    />
+                  </div>
+                  <div class="col-6">
+                    <input
+                      type="text"
+                      class="form-control address-field"
+                      id="inputCEP"
+                      placeholder="CEP"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control address-field"
+                    id="inputComplemento"
+                    placeholder="Complemento"
+                    readonly
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  id="btnEditarEndereco"
+                >
+                  Editar
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Eventos</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Secretaria
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Ação 1</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                Adm
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Painel</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Perfil</a>
-                        </li>
-                    </ul>
-                </div>
+
+                <button
+                  type="button"
+                  class="btn btn-primary mt-2 d-none"
+                  id="btnSalvarEndereco"
+                >
+                  Salvar
+                </button>
+              </form>
             </div>
-        </nav>
-        <section class="content-block">
-            <div class="row">
-
-                <div class="col-lg-8">
-                    
-                    <div class="input-group search-bar-custom mb-3">
-                        <input type="text" class="form-control" placeholder="TextField">
-                        <button class="btn" type="button">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-            
-                    <div class="row filter-group align-items-center">
-                        <div class="col-auto">Pesquisar por:</div>
-                        <div class="col-auto">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioNome" value="nome" checked>
-                                <label class="form-check-label" for="radioNome">Nome</label>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioEmail" value="email">
-                                <label class="form-check-label" for="radioEmail">email</label>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioCodigo" value="codigo">
-                                <label class="form-check-label" for="radioCodigo">Codigo</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row filter-group align-items-center mb-3">
-                        <div class="col-auto">Ordenar por:</div>
-                        <div class="col-auto">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ordenarPor" id="radioAZ" value="az" checked>
-                                <label class="form-check-label" for="radioAZ">A-Z</label>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ordenarPor" id="radioZA" value="za">
-                                <label class="form-check-label" for="radioZA">Z-A</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="table-scrollable">
-                        <div class="table-responsive">
-                            <table class="table table-custom text-center table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Codigo</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Nascimento</th>
-                                        <th scope="col">Cargo</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr data-usuario-id="123" style="cursor: pointer;">
-                                        <td>João da Silva</td>
-                                        <td>12345</td>
-                                        <td>joao@email.com</td>
-                                        <td>10/05/1990</td>
-                                        <td>Aluno</td>
-                                        <td>Ativo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Maria Oliveira</td>
-                                        <td>54321</td>
-                                        <td>maria@email.com</td>
-                                        <td>15/08/1992</td>
-                                        <td>Aluno</td>
-                                        <td>Ativo</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-between action-buttons">
-                        <button class="btn btn-custom">Cadastrar</button>
-                        <button class="btn btn-custom">Editar</button>
-                        <button class="btn btn-custom">Desativar</button>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-4 mt-4 mt-lg-0">
-                    <div class="address-form-box">
-                        <h3 class="text-center" style="font-size: 2rem;">Endereço</h3>
-                        
-                        <form id="formEndereco">
-                            <div class="mb-3">
-                                <input type="text" class="form-control address-field" id="inputRua" placeholder="Rua" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control address-field" id="inputBairro" placeholder="Bairro" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control address-field" id="inputCidade" placeholder="Cidade" readonly>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-6">
-                                    <input type="text" class="form-control address-field" id="inputNumero" placeholder="Numero" readonly>
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" class="form-control address-field" id="inputCEP" placeholder="CEP" readonly>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control address-field" id="inputComplemento" placeholder="Complemento" readonly>
-                            </div>
-
-                            <button type="button" class="btn btn-dark" id="btnEditarEndereco">Editar</button>
-                            
-                            <button type="button" class="btn btn-primary mt-2 d-none" id="btnSalvarEndereco">Salvar</button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        </div> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            const btnEditar = document.getElementById("btnEditarEndereco");
-            const btnSalvar = document.getElementById("btnSalvarEndereco");
-            
-            // Pega todos os campos que devem ser editados
-            const camposEndereco = document.querySelectorAll(".address-field");
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnEditar = document.getElementById("btnEditarEndereco");
+        const btnSalvar = document.getElementById("btnSalvarEndereco");
 
-            // Lógica ao clicar em "EDITAR"
-            btnEditar.addEventListener("click", function() {
-                
-                // 1. Libera os campos para edição
-                camposEndereco.forEach(campo => {
-                    campo.readOnly = false;
-                    campo.style.backgroundColor = "#FFFFFF"; // Muda o fundo para branco
-                });
+        // Pega todos os campos que devem ser editados
+        const camposEndereco = document.querySelectorAll(".address-field");
 
-                // 2. Mostra o botão "Salvar"
-                btnSalvar.classList.remove("d-none");
-            });
+        // Lógica ao clicar em "EDITAR"
+        btnEditar.addEventListener("click", function () {
+          // 1. Libera os campos para edição
+          camposEndereco.forEach((campo) => {
+            campo.readOnly = false;
+            campo.style.backgroundColor = "#FFFFFF"; // Muda o fundo para branco
+          });
 
-            // Lógica ao clicar em "SALVAR"
-            btnSalvar.addEventListener("click", function() {
-                // Aqui você colocaria a lógica de 'fetch' para enviar os dados para o Spring Boot
-                
-                console.log("Dados salvos!");
-
-                // 1. Bloqueia os campos novamente
-                camposEndereco.forEach(campo => {
-                    campo.readOnly = true;
-                    campo.style.backgroundColor = "#EEEEEE"; // Volta o fundo para cinza
-                });
-
-                // 2. Esconde o botão "Salvar"
-                btnSalvar.classList.add("d-none");
-            });
-
+          // 2. Mostra o botão "Salvar"
+          btnSalvar.classList.remove("d-none");
         });
+
+        // Lógica ao clicar em "SALVAR"
+        btnSalvar.addEventListener("click", function () {
+          // Aqui você colocaria a lógica de 'fetch' para enviar os dados para o Spring Boot
+
+          console.log("Dados salvos!");
+
+          // 1. Bloqueia os campos novamente
+          camposEndereco.forEach((campo) => {
+            campo.readOnly = true;
+            campo.style.backgroundColor = "#EEEEEE"; // Volta o fundo para cinza
+          });
+
+          // 2. Esconde o botão "Salvar"
+          btnSalvar.classList.add("d-none");
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
