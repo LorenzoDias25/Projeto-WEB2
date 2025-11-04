@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const modal = bootstrap.Modal.getInstance(modalElement);
     
     // Adiciona o evento de clique ao botão "Confirmar"
+    // btnConfirmar.addEventListener("click", function(){
+    //     console.log("Click");
+
+    // });
+
     btnConfirmar.addEventListener("click", async function() {
         
         const novaSenha = inputNovaSenha.value;
@@ -80,4 +85,3 @@ document.addEventListener("DOMContentLoaded", function() {
         divAlerta.className = "alert d-none"; // Oculta o alerta
     }
 });
-</script>
