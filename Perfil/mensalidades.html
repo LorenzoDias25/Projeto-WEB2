@@ -124,8 +124,6 @@
       .table-custom {
         background-color: transparent !important;
         color: var(--cor-texto-borda) !important;
-        border: 3px solid var(--cor-texto-borda);
-        border-radius: 15px;
       }
 
       .table-custom th,
@@ -142,6 +140,27 @@
       .table-custom thead th {
         border-bottom: 3px solid var(--cor-texto-borda);
         font-size: 1.6rem;
+
+        position: sticky;
+        top: 0; /* Fixa no topo do container que tem o scroll */
+        z-index: 10; /* Garante que o cabeçalho fique por CIMA do conteúdo */
+
+        /* Define uma cor de fundo sólida (a mesma do bloco) 
+       para que o conteúdo não "vaze" por trás do cabeçalho ao rolar */
+        background-color: var(--cor-bloco-principal) !important;
+      }
+
+      /* ... (Seu CSS existente) ... */
+
+      /* Esta é a nova classe para o scroll vertical */
+      .table-scrollable {
+        max-height: 400px; /* Defina a altura máxima que desejar */
+        overflow-y: auto; /* Adiciona o scroll vertical automático */
+
+        /* --- O DESIGN FOI MOVIDO PARA CÁ --- */
+        border: 3px solid var(--cor-texto-borda);
+        border-radius: 15px;
+        overflow:auto;
       }
     </style>
   </head>
@@ -270,7 +289,7 @@
       <section class="content-block text-center">
         <h2 style="font-size: 2.5rem">Tabela de Mensalidades</h2>
 
-        <div class="table-responsive mt-3">
+        <div class="table-responsive mt-3 table-scrollable">
           <table class="table table-custom text-center">
             <thead>
               <tr>
@@ -288,6 +307,24 @@
                 <td>Pendente</td>
               </tr>
               <tr>
+                <td>01/10/2025</td>
+                <td>10/11/2025</td>
+                <td>R$ 150,00</td>
+                <td>Pendente</td>
+              </tr>
+              <tr>
+                <td>01/10/2025</td>
+                <td>10/11/2025</td>
+                <td>R$ 150,00</td>
+                <td>Pendente</td>
+              </tr>
+              <tr>
+                <td>01/10/2025</td>
+                <td>10/11/2025</td>
+                <td>R$ 150,00</td>
+                <td>Pendente</td>
+              </tr>
+              <tr>
                 <td>01/09/2025</td>
                 <td>10/10/2025</td>
                 <td>R$ 150,00</td>
@@ -298,6 +335,24 @@
                 <td>10/09/2025</td>
                 <td>R$ 150,00</td>
                 <td>Pago</td>
+              </tr>
+              <tr>
+                <td>01/10/2025</td>
+                <td>10/11/2025</td>
+                <td>R$ 150,00</td>
+                <td>Pendente</td>
+              </tr>
+              <tr>
+                <td>01/10/2025</td>
+                <td>10/11/2025</td>
+                <td>R$ 150,00</td>
+                <td>Pendente</td>
+              </tr>
+              <tr>
+                <td>01/10/2025</td>
+                <td>10/11/2025</td>
+                <td>R$ 150,00</td>
+                <td>Pendente</td>
               </tr>
             </tbody>
           </table>
