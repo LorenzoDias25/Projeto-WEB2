@@ -1,0 +1,149 @@
+    :root {
+      --cor-fundo-pagina: #fdf0e9;
+      /* Bege/rosa muito claro do fundo */
+      --cor-bloco-principal: #42d1db;
+      /* Azul-petróleo/ciano */
+      --cor-placeholder: #fdd8d8;
+      /* Rosa claro dos placeholders */
+      --cor-texto-borda: #1e1e1e;
+      /* Cor escura (quase preto) para textos e bordas */
+    }
+
+    body {
+      font-family: "Patrick Hand", cursive;
+      background-color: var(--cor-fundo-pagina);
+      color: var(--cor-texto-borda);
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    /* ----- Lógica dos Blocos de Conteúdo ----- */
+    .content-block {
+      background-color: var(--cor-bloco-principal);
+      padding: 1.5rem;
+      border: 3px solid var(--cor-texto-borda);
+      border-radius: 0;
+    }
+
+    /* Remove a borda superior dos blocos empilhados */
+    .content-block+.content-block {
+      border-top: none;
+    }
+
+    /* Arredonda SOMENTE o topo do PRIMEIRO bloco (o navbar) */
+    .container>.content-block:first-child {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    /* Arredonda SOMENTE a base do ÚLTIMO bloco (a tabela) */
+    .container>.content-block:last-child {
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+
+    /* ----- Navbar ----- */
+    .navbar-custom {
+      padding: 0.5rem 1.5rem;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: var(--cor-texto-borda) !important;
+      font-size: 1.75rem;
+      font-weight: bold;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #555 !important;
+    }
+
+    /* ----- Barra de Busca (Reutilizada) ----- */
+    .search-bar-custom {
+      background-color: white;
+      border: 3px solid var(--cor-texto-borda);
+      border-radius: 15px;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .search-bar-custom .form-control {
+      border: none;
+      background: transparent;
+      font-family: "Patrick Hand", cursive;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .search-bar-custom .form-control:focus {
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .search-bar-custom .btn {
+      border: none;
+      background: transparent;
+      font-size: 1.5rem;
+      color: var(--cor-texto-borda);
+    }
+
+    /* ----- Filtros (Radio Buttons) ----- */
+    .filter-group {
+      font-size: 1.5rem;
+    }
+
+    .form-check-input {
+      border: 2px solid var(--cor-texto-borda);
+    }
+
+    .form-check-input:checked {
+      background-color: var(--cor-texto-borda);
+      border-color: var(--cor-texto-borda);
+    }
+
+    /* ----- Tabela Customizada ----- */
+    .table-custom {
+      background-color: transparent !important;
+      color: var(--cor-texto-borda) !important;
+    }
+
+    .table-custom th,
+    .table-custom td {
+      background-color: transparent !important;
+      color: var(--cor-texto-borda) !important;
+      border: none;
+      /* Remove bordas internas da tabela */
+      font-size: 1.4rem;
+      padding: 0.75rem;
+      vertical-align: middle;
+    }
+
+    /* Cabeçalho da tabela (Emissão, Vencimento...) */
+    .table-custom thead th {
+      border-bottom: 3px solid var(--cor-texto-borda);
+      font-size: 1.6rem;
+
+      position: sticky;
+      top: 0;
+      /* Fixa no topo do container que tem o scroll */
+      z-index: 10;
+      /* Garante que o cabeçalho fique por CIMA do conteúdo */
+
+      /* Define uma cor de fundo sólida (a mesma do bloco) 
+       para que o conteúdo não "vaze" por trás do cabeçalho ao rolar */
+      background-color: var(--cor-bloco-principal) !important;
+    }
+
+    /* ... (Seu CSS existente) ... */
+
+    /* Esta é a nova classe para o scroll vertical */
+    .table-scrollable {
+      max-height: 400px;
+      /* Defina a altura máxima que desejar */
+      overflow-y: auto;
+      /* Adiciona o scroll vertical automático */
+
+      /* --- O DESIGN FOI MOVIDO PARA CÁ --- */
+      border: 3px solid var(--cor-texto-borda);
+      border-radius: 15px;
+      overflow: auto;
+    }

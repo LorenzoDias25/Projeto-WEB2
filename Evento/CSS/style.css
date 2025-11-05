@@ -1,0 +1,205 @@
+        :root {
+            --cor-fundo-pagina: #fdf0e9;
+            /* Bege/rosa muito claro do fundo */
+            --cor-bloco-principal: #42d1db;
+            /* Azul-petróleo/ciano */
+            --cor-placeholder: #;
+            /* Rosa claro dos placeholders */
+            --cor-texto-borda: #1e1e1e;
+            /* Cor escura (quase preto) para textos e bordas */
+        }
+
+        body {
+            font-family: 'Patrick Hand', cursive;
+            background-color: var(--cor-fundo-pagina);
+            color: var(--cor-texto-borda);
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        /* Bloco de conteúdo principal (azul-petróleo) */
+        .content-block {
+            background-color: var(--cor-bloco-principal);
+            padding: 1.5rem;
+            border: 3px solid var(--cor-texto-borda);
+            /* margin-bottom: 1.5rem; */
+            /* REMOVIDO para juntar os blocos */
+            border-radius: 0;
+            /* Resetado para aplicar dinamicamente */
+        }
+
+        /* Remove a borda superior dos blocos empilhados para evitar borda dupla */
+        .content-block+.content-block {
+            border-top: none;
+        }
+
+        /* Arredonda SOMENTE o topo do PRIMEIRO bloco */
+        .content-block:first-child {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Arredonda SOMENTE a base do ÚLTIMO bloco */
+        .content-block:last-child {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+
+        /* ----- Navbar ----- */
+        .navbar-custom {
+            padding: 0.5rem 1.5rem;
+            /* Ajuste para navbar */
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: var(--cor-texto-borda) !important;
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #555 !important;
+        }
+
+        /* ----- Barra de Busca e Filtro ----- */
+        .search-bar-custom {
+            background-color: white;
+            border: 3px solid var(--cor-texto-borda);
+            border-radius: 15px;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .search-bar-custom .form-control {
+            border: none;
+            background: transparent;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .search-bar-custom .form-control:focus {
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .search-bar-custom .btn {
+            border: none;
+            background: transparent;
+            font-size: 1.5rem;
+            color: var(--cor-texto-borda);
+        }
+
+        .icon-circle {
+            width: 90px;
+            height: 90px;
+            background-color: var(--cor-placeholder);
+            border: 3px solid var(--cor-texto-borda);
+            border-radius: 50%;
+            margin: 0 auto 0.5rem auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .filter-section p {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+
+
+        /* A caixa do logo foi removida, mas o estilo pode ser útil para outros elementos */
+        .logo-box {
+            width: 180px;
+            height: 100px;
+            background-color: var(--cor-placeholder);
+            border: 3px solid var(--cor-texto-borda);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .main-event-info {
+            /* ---- ADICIONE/MODIFIQUE ISTO ---- */
+            position: absolute;
+            /* Tira o texto do fluxo normal */
+            bottom: 0;
+            /* Posiciona 1.5rem de baixo */
+            left: 0;
+            /* Estica de ponta a ponta */
+            right: 0;
+            /* Estica de ponta a ponta */
+            text-align: center;
+            /* Centraliza o texto */
+
+            /* ---- ESTAS LINHAS PODEM CONTINUAR IGUAIS ---- */
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        /* As regras para h3 e p não precisam mudar */
+        .main-event-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0;
+        }
+
+        .main-event-info p {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        /* ----- Grid de Eventos ----- */
+        .event-card {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .placeholder-box {
+            width: 100%;
+            height: 180px;
+            background-color: var(--cor-placeholder);
+            border: 3px solid var(--cor-texto-borda);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .event-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+
+        /* ----- Rodapé ----- */
+        .footer-logo-box {
+            width: 150px;
+            height: 80px;
+            background-color: var(--cor-placeholder);
+            border: 3px solid var(--cor-texto-borda);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 0.5rem auto;
+        }
+
+        .footer-icon-circle {
+            width: 80px;
+            height: 80px;
+            background-color: var(--cor-placeholder);
+            border: 3px solid var(--cor-texto-borda);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin: 0 auto;
+        }
