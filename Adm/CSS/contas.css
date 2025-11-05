@@ -1,0 +1,240 @@
+:root {
+  --cor-fundo-pagina: #fdf0e9;
+  /* Bege/rosa muito claro do fundo */
+  --cor-bloco-principal: #42d1db;
+  /* Azul-petróleo/ciano */
+  --cor-placeholder: #fdd8d8;
+  /* Rosa claro dos placeholders */
+  --cor-texto-borda: #1e1e1e;
+  /* Cor escura (quase preto) para textos e bordas */
+}
+
+body {
+  font-family: "Patrick Hand", cursive;
+  background-color: var(--cor-fundo-pagina);
+  color: var(--cor-texto-borda);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* ----- Lógica dos Blocos de Conteúdo ----- */
+.content-block {
+  background-color: var(--cor-bloco-principal);
+  padding: 1.5rem;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 0;
+}
+
+.content-block + .content-block {
+  border-top: none;
+}
+
+.container > .content-block:first-child {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.container > .content-block:last-child {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* ----- Navbar ----- */
+.navbar-custom {
+  padding: 0.5rem 1.5rem;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: var(--cor-texto-borda) !important;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #555 !important;
+}
+
+/* ----- Barra de Busca ----- */
+.search-bar-custom {
+  background-color: white;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 15px;
+  padding: 0.25rem 0.5rem;
+}
+
+.search-bar-custom .form-control {
+  border: none;
+  background: transparent;
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.search-bar-custom .form-control:focus {
+  box-shadow: none;
+  background: transparent;
+}
+
+.search-bar-custom .btn {
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  color: var(--cor-texto-borda);
+}
+
+/* ----- Filtros (Radio Buttons) ----- */
+.filter-group {
+  font-size: 1.5rem;
+}
+
+.form-check-input {
+  border: 2px solid var(--cor-texto-borda);
+}
+
+.form-check-input:checked {
+  background-color: var(--cor-texto-borda);
+  border-color: var(--cor-texto-borda);
+}
+
+/* ----- Tabela Customizada (reutilizada) ----- */
+.table-scrollable {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.table-custom {
+  background-color: transparent !important;
+  color: var(--cor-texto-borda) !important;
+}
+
+.table-custom th,
+.table-custom td {
+  background-color: transparent !important;
+  color: var(--cor-texto-borda) !important;
+  border: none;
+  font-size: 1.2rem;
+  /* Fonte menor para caber mais colunas */
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+/* ESTILO PARA A LINHA DA TABELA ATIVA/SELECIONADA */
+.table-custom tbody tr.table-active {
+  background-color: var(--cor-placeholder) !important;
+  /* Cor rosa do placeholder */
+  color: var(--cor-texto-borda) !important;
+}
+
+/* Garante que o cursor mude para todas as linhas do corpo */
+.table-custom tbody tr {
+  cursor: pointer;
+}
+
+.table-custom thead th {
+  border-bottom: 3px solid var(--cor-texto-borda);
+  font-size: 1.4rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--cor-bloco-principal) !important;
+}
+
+/* ----- Botões de Ação da Tabela ----- */
+.action-buttons {
+  border-top: 3px solid var(--cor-texto-borda);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-custom {
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: 3px solid var(--cor-texto-borda);
+  background-color: var(--cor-placeholder);
+  color: var(--cor-texto-borda);
+  border-radius: 10px;
+}
+
+.btn-custom:hover {
+  background-color: #fbc0c0;
+}
+
+/* ----- Formulário de Endereço (Direita) ----- */
+.address-form-box {
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+.address-form-box .form-control {
+  font-family: "Patrick Hand", cursive;
+  font-weight: bold;
+  font-size: 1.3rem;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+}
+
+/* Estilo para campos readonly */
+.address-form-box .form-control[readonly] {
+  background-color: #eee;
+  opacity: 0.7;
+}
+
+.address-form-box .btn {
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+  width: 100%;
+}
+
+/* ... (Seu CSS existente) ... */
+
+/* ----- ESTILO PARA OS INPUTS DOS MODAIS (Edição E Desativação) ----- */
+#modalEditarConta .form-control,
+#modalDesativar .form-control {
+  font-family: "Patrick Hand", cursive;
+  font-weight: bold;
+  font-size: 1.5rem; /* Aumenta o tamanho do texto (como no seu esboço) */
+
+  /* Aplica o estilo de borda do seu design */
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+
+  /* Ajusta a altura para comportar o texto maior */
+  min-height: calc(3.5rem + 10px);
+}
+
+/* Ajusta o padding para a label flutuante funcionar com o novo tamanho */
+#modalEditarConta .form-floating > .form-control,
+#modalDesativar .form-floating > .form-control {
+  padding-top: 2rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Ajusta a posição da label quando ela flutua */
+#modalEditarConta
+  .form-floating
+  > .form-control:not(:placeholder-shown)
+  ~ label,
+#modalDesativar .form-floating > .form-control:not(:placeholder-shown) ~ label {
+  transform: scale(0.85) translateY(-0.8rem) translateX(0.15rem);
+}
+
+/* Ajusta a posição da label quando está "abaixada" */
+#modalEditarConta .form-floating > label,
+#modalDesativar .form-floating > label {
+  padding-top: 0.8rem; /* Centraliza a label verticalmente */
+}
+
+/* Corrige o fundo do campo desabilitado */
+#modalEditarConta .form-control:disabled,
+#modalDesativar .form-control:disabled {
+  background-color: #f0f0f0; /* Um cinza um pouco mais claro */
+}
