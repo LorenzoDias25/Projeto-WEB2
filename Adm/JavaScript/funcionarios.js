@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "btnConfirmarDesativacao"
   );
   const alertaDesativar = document.getElementById("alertaDesativar");
+  const alertaEditar = document.getElementById("alertaEditar");
+  const alertaCadastar = document.getElementById("alertaCadastrar");
 
   // Modal Edição
   const modalEditarFuncionario = document.getElementById(
@@ -39,6 +41,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const modalCadastrarFuncionario = document.getElementById(
     "modalCadastrarFuncionario"
   );
+
+  //Enum tipo de modal
+  const tipoModal = Object.freeze({
+    DESATIVAR: "desativar",
+    EDITAR: "editar",
+    CADASTRAR: "cadastrar",
+  });
+
+  //tipo de alert
+  const tipoAlert = Object.freeze({
+    DANGER: "danger",
+    SUCESS: "sucess"
+  });
+  const cadNome = document.getElementById("cadNome");
+  const cadCodigo = document.getElementById("cadCodigo");
+  const cadCPF = document.getElementById("cadCPF");
+  const cadEmail = document.getElementById("cadEmail");
+  const cadCelular = document.getElementById("cadCelular");
+  const cadCargo = document.getElementById("cadCargo");
   const btnSalvarCadastro = document.getElementById("btnSalvarCadastro");
   // (Campos 'cadNome', 'cadCodigo', etc. são selecionados quando necessário)
 
@@ -96,7 +117,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (codigoDigitado === codigoCorreto) {
       console.log(`DESATIVANDO FUNCIONÁRIO ID: ${funcionarioSelecionado.id}`);
-      mostrarAlertaDesativar("Funcionário desativado com sucesso!", "success");
+      mostrarAlerta(
+        "Funcionário desativado com sucesso!",
+        tipoAlert.SUCESS,
+        tipoModal.DESATIVAR
+      );
 
       const linhaAtiva = tabelaBody.querySelector(".table-active");
       resetarSelecao();
@@ -109,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         bootstrap.Modal.getInstance(modalDesativar).hide();
       }, 1500);
     } else {
-      mostrarAlertaDesativar("Código incorreto. Tente novamente.", "danger");
+      mostrarAlerta("Código incorreto", tipoAlert.DANGER, tipoModal.DESATIVAR);
     }
   });
 
@@ -166,6 +191,23 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   btnSalvarEdicao.addEventListener("click", function () {
+    if (editNome.value == "") {
+      mostrarAlerta("Nome em branco", tipoAlert.DANGER, tipoModal.EDITAR);
+      return;
+    } else if (editCPF.value == "") {
+      mostrarAlerta("CPF em branco", tipoAlert.DANGER, tipoModal.EDITAR);
+      return;
+    } else if (editEmail.value == "") {
+      mostrarAlerta("Email em branco", tipoAlert.DANGER, tipoModal.EDITAR);
+      return;
+    } else if (editCelular.value == "") {
+      mostrarAlerta("Celular em branco", tipoAlert.DANGER, tipoModal.EDITAR);
+      return;
+    } else if (editCargo.value == "") {
+      mostrarAlerta("Cargo em branco", tipoAlert.DANGER, tipoModal.EDITAR);
+      return;
+    }
+
     const dadosEditados = {
       id: funcionarioSelecionado.id,
       nome: editNome.value,
@@ -193,22 +235,42 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Lógica 5: Modal de Cadastro (Separado) ---
   modalCadastrarFuncionario.addEventListener("show.bs.modal", function () {
     // Limpa todos os campos
-    document.getElementById("cadNome").value = "";
-    document.getElementById("cadCodigo").value = "";
-    document.getElementById("cadCPF").value = "";
-    document.getElementById("cadEmail").value = "";
-    document.getElementById("cadCelular").value = "";
-    document.getElementById("cadCargo").value = "";
+    cadNome.value = "";
+    cadCodigo.value = "";
+    cadCPF.value = "";
+    cadEmail.value = "";
+    cadCelular.value = "";
+    cadCargo.value = "";
   });
 
   btnSalvarCadastro.addEventListener("click", function () {
+    if (cadNome.value == "") {
+      mostrarAlerta("Nome em branco", tipoAlert.DANGER, tipoModal.CADASTRAR);
+      return;
+    } else if (cadCodigo.value == "") {
+      mostrarAlerta("Código em branco", tipoAlert.DANGER, tipoModal.CADASTRAR);
+      return;
+    } else if (cadCPF.value == "") {
+      mostrarAlerta("CPF em branco", tipoAlert.DANGER, tipoModal.CADASTRAR);
+      return;
+    } else if (cadEmail.value == "") {
+      mostrarAlerta("Email em branco", tipoAlert.DANGER, tipoModal.CADASTRAR);
+      return;
+    } else if (cadCelular.value == "") {
+      mostrarAlerta("Celular em branco", tipoAlert.DANGER, tipoModal.CADASTRAR);
+      return;
+    } else if (cadCargo.value == "") {
+      mostrarAlerta("Cargo em branco", tipoAlert.DANGER, tipoModal.CADASTRAR);
+      return;
+    }
+
     const dadosCadastro = {
-      nome: document.getElementById("cadNome").value,
-      codigo: document.getElementById("cadCodigo").value,
-      cpf: document.getElementById("cadCPF").value,
-      email: document.getElementById("cadEmail").value,
-      celular: document.getElementById("cadCelular").value,
-      cargo: document.getElementById("cadCargo").value,
+      nome: cadNome.value,
+      codigo: cadCodigo.value,
+      cpf: cadCPF.value,
+      email: cadEmail.value,
+      celular: cadCelular.value,
+      cargo: cadCargo.value,
     };
 
     console.clear();
@@ -219,9 +281,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- Funções Auxiliares (COMPLETAS) ---
-  function mostrarAlertaDesativar(mensagem, tipo) {
-    alertaDesativar.textContent = mensagem;
-    alertaDesativar.className = `alert alert-${tipo}`;
+  function mostrarAlerta(mensagem, tipo, btn) {
+    if (btn == tipoModal.DESATIVAR) {
+      alertaDesativar.textContent = mensagem;
+      alertaDesativar.className = `alert alert-${tipo}`;
+    } else if (btn == tipoModal.EDITAR) {
+      alertaEditar.textContent = mensagem;
+      alertaEditar.className = `alert alert-${tipo}`;
+    } else if (btn == tipoModal.CADASTRAR) {
+      alertaCadastar.textContent = mensagem;
+      alertaCadastar.className = `alert alert-${tipo}`;
+    }
   }
 
   function resetarSelecao() {
