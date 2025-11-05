@@ -66,6 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+
+  
   // --- Lógica 2: Modal de Desativação (COMPLETA) ---
   modalDesativar.addEventListener("show.bs.modal", function () {
     if (usuarioSelecionado) {

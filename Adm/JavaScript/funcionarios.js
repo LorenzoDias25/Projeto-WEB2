@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Seleção de Elementos (COMPLETA) ---
   const btnCadastrarTabela = document.getElementById("btnCadastrarTabela");
-  const btnVisualizarTabela = document.getElementById("btnVisualizarTabela");
   const btnEditarTabela = document.getElementById("btnEditarTabela");
   const btnDesativarTabela = document.getElementById("btnDesativarTabela");
 
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
       funcionarioSelecionado = { id, nome, codigo, cpf, email, celular, cargo };
 
       // Habilita os botões
-      btnVisualizarTabela.disabled = false;
       btnEditarTabela.disabled = false;
       btnDesativarTabela.disabled = false;
 
@@ -118,23 +116,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- Lógica 3: Formulário de Endereço (Painel da Direita) ---
 
   // Lógica do botão "Visualizar" para preencher o endereço
-  btnVisualizarTabela.addEventListener("click", function () {
-    if (!funcionarioSelecionado) return;
+  // btnVisualizarTabela.addEventListener("click", function () {
+  //   if (!funcionarioSelecionado) return;
 
-    console.log(
-      `--- Visualizando Endereço do ${funcionarioSelecionado.nome} (ID: ${funcionarioSelecionado.id}) ---`
-    );
-    // Aqui você faria o 'fetch' para a API do Spring Boot
-    // Ex: fetch(`/api/funcionarios/${funcionarioSelecionado.id}/endereco`)
+  //   console.log(
+  //     `--- Visualizando Endereço do ${funcionarioSelecionado.nome} (ID: ${funcionarioSelecionado.id}) ---`
+  //   );
+  //   // Aqui você faria o 'fetch' para a API do Spring Boot
+  //   // Ex: fetch(`/api/funcionarios/${funcionarioSelecionado.id}/endereco`)
 
-    // Por enquanto, vamos preencher com dados fictícios para teste:
-    document.getElementById("inputRua").value = "Rua Fictícia, 123";
-    document.getElementById("inputBairro").value = "Centro";
-    document.getElementById("inputCidade").value = "Rio de Janeiro";
-    document.getElementById("inputNumero").value = "123";
-    document.getElementById("inputCEP").value = "20000-000";
-    document.getElementById("inputComplemento").value = "Apto 101";
-  });
+  //   // Por enquanto, vamos preencher com dados fictícios para teste:
+  //   document.getElementById("inputRua").value = "Rua Fictícia, 123";
+  //   document.getElementById("inputBairro").value = "Centro";
+  //   document.getElementById("inputCidade").value = "Rio de Janeiro";
+  //   document.getElementById("inputNumero").value = "123";
+  //   document.getElementById("inputCEP").value = "20000-000";
+  //   document.getElementById("inputComplemento").value = "Apto 101";
+  // });
 
   // Lógica dos botões "Editar/Salvar" do formulário de endereço
   btnEditarEndereco.addEventListener("click", function () {
