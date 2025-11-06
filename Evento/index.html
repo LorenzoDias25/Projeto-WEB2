@@ -98,74 +98,81 @@
 
         <section class="content-block">
             <div class="row">
+
                 <div class="col-lg-4 col-md-6">
-                    <div class="event-card">
-                        <div class="placeholder-box">
-                            <span>Foto Evento</span>
-                        </div>
+                    <div class="event-card" data-bs-toggle="modal" data-bs-target="#modalInfoEvento"
+                        data-nome="Show de Rock Anual" data-participantes="1500" data-inicio="10/12/2025"
+                        data-fim="10/12/2025" data-local="Estádio Principal" style="cursor: pointer;">
+
+                        <div class="placeholder-box"><span>Foto Evento</span></div>
                         <div class="card-body">
-                            <p class="card-text mb-0">Data Evento</p>
-                            <h3 class="card-title">Nome evento</h3>
+                            <p class="card-text mb-0">10/12/2025</p>
+                            <h3 class="card-title">Show de Rock Anual</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="event-card">
-                        <div class="placeholder-box">
-                            <span>Foto Evento</span>
-                        </div>
+                    <div class="event-card" data-bs-toggle="modal" data-bs-target="#modalInfoEvento"
+                        data-nome="Feira de Tecnologia" data-participantes="250" data-inicio="15/11/2025"
+                        data-fim="17/11/2025" data-local="Quadra" style="cursor: pointer;">
+
+                        <div class="placeholder-box"><span>Foto Evento</span></div>
                         <div class="card-body">
-                            <p class="card-text mb-0">Data Evento</p>
-                            <h3 class="card-title">Nome evento</h3>
+                            <p class="card-text mb-0">15/11/2025</p>
+                            <h3 class="card-title">Feira de Tecnologia</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="event-card">
-                        <div class="placeholder-box">
-                            <span>Foto Evento</span>
-                        </div>
+                    <div class="event-card" data-bs-toggle="modal" data-bs-target="#modalInfoEvento"
+                        data-nome="Palestra de IA" data-local="Laboratório 2" data-participantes="80"
+                        data-inicio="20/11/2025" data-fim="20/11/2025" style="cursor: pointer;">
+
+                        <div class="placeholder-box"><span>Foto Evento</span></div>
                         <div class="card-body">
-                            <p class="card-text mb-0">Data Evento</p>
-                            <h3 class="card-title">Nome evento</h3>
+                            <p class="card-text mb-0">20/11/2025</p>
+                            <h3 class="card-title">Palestra de IA</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="event-card">
-                        <div class="placeholder-box">
-                            <span>Foto Evento</span>
-                        </div>
+                    <div class="event-card" data-bs-toggle="modal" data-bs-target="#modalInfoEvento"
+                        data-nome="Workshop de Robótica" data-participantes="45" data-inicio="02/12/2025"
+                        data-fim="02/12/2025" data-local="Saguão" style="cursor: pointer;">
+
+                        <div class="placeholder-box"><span>Foto Evento</span></div>
                         <div class="card-body">
-                            <p class="card-text mb-0">Data Evento</p>
-                            <h3 class="card-title">Nome evento</h3>
+                            <p class="card-text mb-0">02/12/2025</p>
+                            <h3 class="card-title">Workshop de Robótica</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="event-card">
-                        <div class="placeholder-box">
-                            <span>Foto Evento</span>
-                        </div>
+                    <div class="event-card" data-bs-toggle="modal" data-bs-target="#modalInfoEvento"
+                        data-nome="Apresentação Teatral" data-participantes="300" data-inicio="05/12/2025"
+                        data-fim="05/12/2025" data-local="Teatro" style="cursor: pointer;">
+
+                        <div class="placeholder-box"><span>Foto Evento</span></div>
                         <div class="card-body">
-                            <p class="card-text mb-0">Data Evento</op>
-                            <h3 class="card-title">Nome evento</h3>
+                            <p class="card-text mb-0">05/12/2025</p>
+                            <h3 class="card-title">Apresentação Teatral</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                    <div class="event-card">
-                        <div class="placeholder-box">
-                            <span>Foto Evento</span>
-                        </div>
+                    <div class="event-card" data-bs-toggle="modal" data-bs-target="#modalInfoEvento"
+                        data-nome="Formatura 2025" data-local="Auditório" data-participantes="500"
+                        data-inicio="20/12/2025" data-fim="20/12/2025" style="cursor: pointer;">
+
+                        <div class="placeholder-box"><span>Foto Evento</span></div>
                         <div class="card-body">
-                            <p class="card-text mb-0">Data Evento</p>
-                            <h3 class="card-title">Nome evento</h3>
+                            <p class="card-text mb-0">20/12/2025</p>
+                            <h3 class="card-title">Formatura 2025</h3>
                         </div>
                     </div>
                 </div>
@@ -194,7 +201,40 @@
         </footer>
 
     </div>
+
+    <div class="modal fade" id="modalInfoEvento" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content"
+                style="background-color: var(--cor-placeholder); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+
+                <div class="modal-header"
+                    style="border-bottom: 3px solid var(--cor-texto-borda); padding: 1rem 1.5rem;">
+                    <h3 class="modal-title" style="font-size: 2.5rem;">Informações do Evento</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body text-center" style="padding: 2rem;">
+
+                    <h4 style="font-size: 1.8rem; opacity: 0.8;">Nome</h4>
+                    <h2 id="modalEventName" style="font-size: 3rem; margin-top: -10px;">Nome do Evento</h2>
+                    <h4 style="font-size: 1.8rem; opacity: 0.8; margin-top: 1.5rem;">Local</h4>
+                    <h2 id="modalEventLocal" style="font-size: 3rem; margin-top: -10px;">Local do Evento</h2>
+                    <h4 style="font-size: 1.8rem; opacity: 0.8; margin-top: 1.5rem;">PARTICIPANTES</h4>
+                    <h2 id="modalEventParticipants" style="font-size: 3rem; margin-top: -10px;">0</h2>
+
+                </div>
+
+                <div class="modal-footer d-flex justify-content-between"
+                    style="border-top: 3px solid var(--cor-texto-borda); font-size: 1.5rem; padding: 1rem 1.5rem;">
+                    <span id="modalEventStartDate">DATA INICIO</span>
+                    <span>-</span>
+                    <span id="modalEventEndDate">DATA FIM</span>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/Evento/JS/index.js"></script>
 </body>
 
 </html>
