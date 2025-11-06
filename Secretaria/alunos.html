@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Alunos</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="/Secretaria/CSS/alunos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container mt-3 mb-3">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg content-block navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="Assets/logo.png" style="height: 60px; width: auto;" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Eventos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Secretaria
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Ação 1</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Adm
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Contas</a></li>
+                <li><a class="dropdown-item" href="#">Funcionários</a></li>
+                <li><a class="dropdown-item" href="#">Alunos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Perfil</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Fim Navbar -->
+
+    <!-- Seção Principal -->
+    <section class="content-block">
+      <div class="row">
+
+        <!-- Coluna da Esquerda (Tabela Principal) -->
+        <div class="col-lg-8">
+
+          <!-- Busca e Filtros -->
+          <div class="input-group search-bar-custom mb-3">
+            <input type="text" class="form-control" placeholder="Pesquisar aluno...">
+            <button class="btn" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+          <div class="row filter-group align-items-center">
+            <div class="col-auto">Pesquisar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioNome" value="nome" checked>
+                <label class="form-check-label" for="radioNome">Nome</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioTurma" value="turma">
+                <label class="form-check-label" for="radioTurma">Turma</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioMatricula" value="matricula">
+                <label class="form-check-label" for="radioMatricula">Matrícula</label>
+              </div>
+            </div>
+          </div>
+          <div class="row filter-group align-items-center mb-3">
+            <div class="col-auto">Ordenar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioAZ" value="az" checked>
+                <label class="form-check-label" for="radioAZ">A-Z</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioZA" value="za">
+                <label class="form-check-label" for="radioZA">Z-A</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela Principal de Alunos -->
+          <div class="table-scrollable">
+            <div class="table-responsive">
+              <table class="table table-custom text-center table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Matrícula</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Nascimento</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Turma</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <!-- Corpo da Tabela de Alunos -->
+                <tbody id="tabelaAlunosBody">
+                  <tr data-aluno-id="A123" style="cursor: pointer;">
+                    <td>A123</td>
+                    <td>Ana Júlia Oliveira</td>
+                    <td>ana.julia@email.com</td>
+                    <td>111.222.333-44</td>
+                    <td>10/05/2005</td>
+                    <td>(21) 91111-2222</td>
+                    <td>T-301</td>
+                    <td>Ativo</td>
+                  </tr>
+                  <tr data-aluno-id="B456">
+                    <td>B456</td>
+                    <td>Bruno Martins Silva</td>
+                    <td>bruno.martins@email.com</td>
+                    <td>222.333.444-55</td>
+                    <td>15/08/2004</td>
+                    <td>(21) 92222-3333</td>
+                    <td>T-302</td>
+                    <td>Ativo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Botões de Ação da Tabela Principal -->
+          <div class="d-flex justify-content-between action-buttons">
+            <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#modalCadastrarAluno">
+              Cadastrar
+            </button>
+            <button class="btn btn-custom" id="btnVisualizarAluno" disabled>
+              Visualizar
+            </button>
+            <button class="btn btn-custom" id="btnEditarAluno" data-bs-toggle="modal"
+              data-bs-target="#modalEditarAluno" disabled>
+              Editar
+            </button>
+            <button class="btn btn-custom" id="btnDesativarAluno" data-bs-toggle="modal"
+              data-bs-target="#modalDesativar" disabled>
+              Desativar
+            </button>
+          </div>
+
+        </div>
+        <!-- Fim Coluna Esquerda -->
+
+        <!-- Coluna da Direita (Tabelas Secundárias) -->
+        <div class="col-lg-4 mt-4 mt-lg-0">
+
+          <!-- Caixa Histórico -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Histórico</h3>
+            <div class="table-scrollable">
+              <div class="table-responsive">
+                <table class="table table-custom text-center table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Nota</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <!-- Corpo da Tabela de Histórico -->
+                  <tbody id="tabelaHistoricoBody">
+                    <tr><td colspan="3">Selecione um aluno e clique em "Visualizar".</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button class="btn btn-custom" id="btnEditarHistorico" data-bs-toggle="modal" data-bs-target="#modalEditarHistorico" disabled>
+              Editar
+            </button>
+          </div>
+          <!-- Fim Caixa Histórico -->
+          
+          <!-- Caixa Mensalidades -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Mensalidades</h3>
+            <div class="table-scrollable">
+              <div class="table-responsive">
+                <table class="table table-custom text-center table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Vencimento</th>
+                      <th scope="col">Valor</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <!-- Corpo da Tabela de Mensalidades -->
+                  <tbody id="tabelaMensalidadesBody">
+                    <tr><td colspan="3">Selecione um aluno e clique em "Visualizar".</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button class="btn btn-custom" id="btnInserirMensalidade" data-bs-toggle="modal" data-bs-target="#modalEditarMensalidade">
+              Inserir
+            </button>
+            <button class="btn btn-custom" id="btnEditarMensalidade" data-bs-toggle="modal" data-bs-target="#modalEditarMensalidade" disabled>
+              Editar
+            </button>
+          </div>
+          <!-- Fim Caixa Mensalidades -->
+
+        </div>
+        <!-- Fim Coluna Direita -->
+
+      </div>
+    </section>
+  </div>
+  
+  
+  <!-- MODAIS (Coloque no final do <body>) -->
+
+  <!-- 1. Modal Desativar Aluno -->
+  <div class="modal fade" id="modalDesativar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body text-center" style="padding: 2rem;">
+          <h5 class_style="font-size: 1.8rem;" id="desativarMensagem">O aluno(a) .... será desativado</h5>
+          <p class="mt-2" style="font-size: 1.4rem;" id="desativarInstrucao">Digite "Matrícula" para confirmar</p>
+          <div class="form-floating my-3">
+            <input type="text" class="form-control" id="inputConfirmarCodigo" placeholder="Matrícula">
+            <label for="inputConfirmarCodigo" style="color: #555;">Matrícula</label>
+          </div>
+          <button type="button" class="btn btn-custom w-100" id="btnConfirmarDesativacao">Confirmar</button>
+          <div id="alertaDesativar" class="alert mt-3 d-none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Modal Cadastrar Aluno -->
+  <div class="modal fade" id="modalCadastrarAluno" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;">Cadastrar Novo Aluno</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control mb-3" id="cadNome" placeholder="Nome Completo">
+              <input type="text" class="form-control mb-3" id="cadMatricula" placeholder="Matrícula (Ex: A123)">
+              <input type="text" class="form-control mb-3" id="cadCPF" placeholder="CPF">
+              <input type="email" class="form-control mb-3" id="cadEmail" placeholder="Email">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control mb-3" id="cadNascimento" placeholder="Nascimento (dd/mm/aaaa)">
+              <input type="text" class="form-control mb-3" id="cadCelular" placeholder="Celular">
+              <input type="text" class="form-control mb-3" id="cadTurma" placeholder="Turma">
+              <input type="text" class="form-control mb-3" id="cadStatus" placeholder="Status (Ex: Ativo)">
+            </div>
+          </div>
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarCadastro">Confirmar Cadastro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- 3. Modal Editar Aluno -->
+  <div class="modal fade" id="modalEditarAluno" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;">Editar Aluno</h3>
+          <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control mb-3" id="editMatricula" placeholder="Matrícula" disabled>
+                <input type="text" class="form-control mb-3" id="editNome" placeholder="Nome Completo">
+                <input type="text" class="form-control mb-3" id="editEmail" placeholder="Email">
+                <input type="text" class="form-control mb-3" id="editCPF" placeholder="CPF">
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control mb-3" id="editNascimento" placeholder="Nascimento">
+                <input type="text" class="form-control mb-3" id="editCelular" placeholder="Celular">
+                <input type="text" class="form-control mb-3" id="editTurma" placeholder="Turma">
+                <input type="text" class="form-control mb-3" id="editStatus" placeholder="Status">
+            </div>
+          </div>
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarEdicaoAluno">Confirmar Alterações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Modal Editar Histórico -->
+  <div class="modal fade" id="modalEditarHistorico" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;">Editar Histórico</h3>
+          <input type="text" class="form-control mb-3" id="editHistoricoDisciplina" placeholder="Disciplina" disabled>
+          <input type="text" class="form-control mb-3" id="editHistoricoNota" placeholder="Nota">
+          <input type="text" class="form-control mb-3" id="editHistoricoStatus" placeholder="Status">
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarEdicaoHistorico">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 5. Modal Editar/Inserir Mensalidade -->
+  <div class="modal fade" id="modalEditarMensalidade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;" id="modalMensalidadeTitulo">Inserir Mensalidade</h3>
+          <input type="text" class="form-control mb-3" id="editMensalidadeVencimento" placeholder="Vencimento (dd/mm/aaaa)">
+          <input type="text" class="form-control mb-3" id="editMensalidadeValor" placeholder="Valor (Ex: 150.00)">
+          <input type="text" class="form-control mb-3" id="editMensalidadeStatus" placeholder="Status (Ex: Pendente)">
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarEdicaoMensalidade">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/Secretaria/JS/alunos.js"></script>
+
+</body>
+</html>
