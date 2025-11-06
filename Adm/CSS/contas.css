@@ -103,7 +103,7 @@ body {
   overflow-y: auto;
   border: 3px solid var(--cor-texto-borda);
   border-radius: 15px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .table-custom {
