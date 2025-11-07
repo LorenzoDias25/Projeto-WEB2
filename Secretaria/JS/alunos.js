@@ -4,6 +4,33 @@ document.addEventListener("DOMContentLoaded", function () {
   let historicoSelecionado = null;
   let mensalidadeSelecionada = null;
 
+  //Enum Botoes Alunos
+  const BtnAlunos = Object.freeze({
+    CADASTRAR: "cadastrar",
+    VISUALIZARL: "visualizar",
+    EDITAR: "editar",
+    DESATIVAR: "desativar",
+  });
+
+  //Enum Botoes Mensalidades
+  const BtnMensalidades = Object.freeze({
+    INSERIR: "inserir",
+    EDITAR: "editar",
+  });
+
+  //Enum Botoes Historico
+  const BtnHistorico = Object.freeze({
+    EDITAR: "editar",
+  });
+
+  //tipo de alert
+  const tipoAlert = Object.freeze({
+    DANGER: "danger",
+    SUCESS: "primary",
+  });
+
+  //Alert Modal
+
   // --- Seletores da Tabela Principal ---
   const tabelaAlunosBody = document.getElementById("tabelaAlunosBody");
   const btnVisualizarAluno = document.getElementById("btnVisualizarAluno");
@@ -23,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const btnEditarMensalidade = document.getElementById("btnEditarMensalidade");
 
-  // --- Seletores Modal Desativar ---
+  // --- Seletores Modal Desativar Alunos ---
   const modalDesativar = document.getElementById("modalDesativar");
   const desativarMensagem = document.getElementById("desativarMensagem");
   const desativarInstrucao = document.getElementById("desativarInstrucao");
@@ -51,13 +78,27 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const editHistoricoNota = document.getElementById("editHistoricoNota");
   const editHistoricoStatus = document.getElementById("editHistoricoStatus");
+  const btnSalvarEdicaoHistorico = document.getElementById(
+    "btnSalvarEdicaoHistorico"
+  );
+  const alertaModalEdicaoHistorico = document.getElementById(
+    "alertaModalEdicaoHistorico"
+  );
 
   // --- Seletores Modal Mensalidade ---
   const modalEditarMensalidade = document.getElementById(
     "modalEditarMensalidade"
   );
+
+  const modalInserirMensalidade = document.getElementById(
+    "modalInserirMensalidade"
+  );
+
   const modalMensalidadeTitulo = document.getElementById(
     "modalMensalidadeTitulo"
+  );
+  const editMensalidadeEmissao = document.getElementById(
+    "editMensalidadeEmissao"
   );
   const editMensalidadeVencimento = document.getElementById(
     "editMensalidadeVencimento"
@@ -65,6 +106,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const editMensalidadeValor = document.getElementById("editMensalidadeValor");
   const editMensalidadeStatus = document.getElementById(
     "editMensalidadeStatus"
+  );
+  const btnSalvarEdicaoMensalidade = document.getElementById(
+    "btnSalvarEdicaoMensalidade"
+  );
+  const inserirMensalidadeVencimento = document.getElementById(
+    "inserirMensalidadeVencimento"
+  );
+  const inserirMensalidadeValor = document.getElementById(
+    "inserirMensalidadeValor"
+  );
+  const btnSalvarInserirMensalidade = document.getElementById(
+    "btnSalvarInserirMensalidade"
+  );
+  const alertaModalEdicaoMensalidade = document.getElementById(
+    "alertaModalEdicaoMensalidade"
+  );
+  const alertaModalInserirMensalidade = document.getElementById(
+    "alertaModalInserirMensalidade"
   );
 
   // --- LÓGICA 1: SELEÇÃO DE ALUNO (TABELA PRINCIPAL) ---
@@ -91,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
       btnVisualizarAluno.disabled = false;
       btnEditarAluno.disabled = false;
       btnDesativarAluno.disabled = false;
+      btnInserirMensalidade.disabled = false;
 
       // Highlight
       tabelaAlunosBody
@@ -104,20 +164,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.clear();
       console.log("--- ✅ Aluno Selecionado ---", alunoSelecionado);
+
+      console.log(`Carregando dados para o Aluno ID: ${alunoSelecionado.id}`);
+      carregarHistoricoSimulado(alunoSelecionado.id);
+      carregarMensalidadesSimulado(alunoSelecionado.id);
     });
   }
 
   // --- LÓGICA 2: BOTÃO "VISUALIZAR" (CARREGA TABELAS) ---
-  btnVisualizarAluno.addEventListener("click", function () {
-    if (!alunoSelecionado) return;
-
-    console.log(`Carregando dados para o Aluno ID: ${alunoSelecionado.id}`);
-    // Aqui entraria a chamada fetch() para o Spring Boot
-
-    // Simulação
-    carregarHistoricoSimulado(alunoSelecionado.id);
-    carregarMensalidadesSimulado(alunoSelecionado.id);
-  });
+  btnVisualizarAluno.addEventListener("click", function () {});
 
   // --- LÓGICA 3: SELEÇÃO TABELA HISTÓRICO ---
   tabelaHistoricoBody.addEventListener("click", function (event) {
@@ -148,9 +203,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const celulas = linhaClicada.cells;
     mensalidadeSelecionada = {
       id: linhaClicada.dataset.mensalidadeId, // Supondo que tenhamos um data-id
-      vencimento: celulas[0].textContent.trim(),
-      valor: celulas[1].textContent.trim(),
-      status: celulas[2].textContent.trim(),
+      emissao: celulas[0].textContent.trim(),
+      vencimento: celulas[1].textContent.trim(),
+      valor: celulas[2].textContent.trim(),
+      status: celulas[3].textContent.trim(),
     };
 
     btnEditarMensalidade.disabled = false;
@@ -190,27 +246,97 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Modal Editar/Inserir Mensalidade (Lógica combinada)
+  // Modal Editar Mensalidade
   modalEditarMensalidade.addEventListener("show.bs.modal", function (event) {
-    const triggerButton = event.relatedTarget;
+    modalMensalidadeTitulo.textContent = "Editar Mensalidade";
+    editMensalidadeEmissao.value = mensalidadeSelecionada.emissao;
+    editMensalidadeVencimento.value = mensalidadeSelecionada.vencimento;
+    editMensalidadeValor.value = mensalidadeSelecionada.valor;
+    editMensalidadeStatus.value = mensalidadeSelecionada.status;
 
-    if (
-      triggerButton &&
-      triggerButton.id === "btnEditarMensalidade" &&
-      mensalidadeSelecionada
-    ) {
-      // MODO EDIÇÃO
-      modalMensalidadeTitulo.textContent = "Editar Mensalidade";
-      editMensalidadeVencimento.value = mensalidadeSelecionada.vencimento;
-      editMensalidadeValor.value = mensalidadeSelecionada.valor;
-      editMensalidadeStatus.value = mensalidadeSelecionada.status;
-    } else {
-      // MODO INSERIR
-      modalMensalidadeTitulo.textContent = "Inserir Mensalidade";
-      editMensalidadeVencimento.value = "";
-      editMensalidadeValor.value = "";
-      editMensalidadeStatus.value = "Pendente";
+    alertaModalEdicaoMensalidade.classList.add("d-none");
+  });
+
+  //Confirma Edicao Mensalidade
+  btnSalvarEdicaoMensalidade.addEventListener("click", function () {
+    if (editMensalidadeEmissao.value == "") {
+      mostrarAlerta(
+        "Emissao em branco",
+        tipoAlert.DANGER,
+        alertaModalEdicaoMensalidade
+      );
+      return;
+    } else if (editMensalidadeVencimento.value == "") {
+      mostrarAlerta(
+        "Vencimento em branco",
+        tipoAlert.DANGER,
+        alertaModalEdicaoMensalidade
+      );
+      return;
+    } else if (editMensalidadeValor.value == "") {
+      mostrarAlerta(
+        "Valor em branco",
+        tipoAlert.DANGER,
+        alertaModalEdicaoMensalidade
+      );
+      return;
+    } else if (editMensalidadeStatus.value == "") {
+      mostrarAlerta(
+        "Status em branco",
+        tipoAlert.DANGER,
+        alertaModalEdicaoMensalidade
+      );
+      return;
     }
+
+    mostrarAlerta(
+      "Operação concluída",
+      tipoAlert.SUCESS,
+      alertaModalEdicaoMensalidade
+    );
+
+    setTimeout(() => {
+      bootstrap.Modal.getInstance(modalEditarMensalidade).hide();
+    }, 500);
+  });
+
+  //Modal Inserir Mensalidade
+  modalInserirMensalidade.addEventListener("show.bs.modal", function (event) {
+    // MODO INSERIR
+    modalMensalidadeTitulo.textContent = "Inserir Mensalidade";
+    inserirMensalidadeVencimento.value = "";
+    inserirMensalidadeValor.value = "";
+
+    alertaModalInserirMensalidade.classList.add("d-none");
+  });
+
+  //Confirma Inserir Mensalidade
+  btnSalvarInserirMensalidade.addEventListener("click", function () {
+    if (inserirMensalidadeVencimento.value == "") {
+      mostrarAlerta(
+        "Vencimento em branco",
+        tipoAlert.DANGER,
+        alertaModalInserirMensalidade
+      );
+      return;
+    } else if (inserirMensalidadeValor.value == "") {
+      mostrarAlerta(
+        "Valor em branco",
+        tipoAlert.DANGER,
+        alertaModalInserirMensalidade
+      );
+      return;
+    }
+
+    mostrarAlerta(
+      "Operação concluída",
+      tipoAlert.SUCESS,
+      alertaModalInserirMensalidade
+    );
+
+    setTimeout(() => {
+      bootstrap.Modal.getInstance(modalInserirMensalidade).hide();
+    }, 500);
   });
 
   // Modal Editar Histórico
@@ -220,6 +346,37 @@ document.addEventListener("DOMContentLoaded", function () {
       editHistoricoNota.value = historicoSelecionado.nota;
       editHistoricoStatus.value = historicoSelecionado.status;
     }
+
+    alertaModalEdicaoHistorico.classList.add("d-none");
+  });
+
+  //Confirmar Edição histórico
+  btnSalvarEdicaoHistorico.addEventListener("click", function () {
+    if (editHistoricoNota.value == "") {
+      mostrarAlerta(
+        "Nota em branco",
+        tipoAlert.DANGER,
+        alertaModalEdicaoHistorico
+      );
+      return;
+    } else if (editHistoricoStatus.value == "") {
+      mostrarAlerta(
+        "Nota em branco",
+        tipoAlert.DANGER,
+        alertaModalEdicaoHistorico
+      );
+      return;
+    }
+
+    mostrarAlerta(
+      "Operação concluída",
+      tipoAlert.SUCESS,
+      alertaModalEdicaoHistorico
+    );
+
+    setTimeout(() => {
+      bootstrap.Modal.getInstance(modalEditarHistorico).hide();
+    }, 500);
   });
 
   // --- FUNÇÕES AUXILIARES ---
@@ -258,13 +415,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (alunoId === "A123") {
       dadosHtml = `
-                  <tr data-mensalidade-id="m1"><td>10/10/2025</td><td>150.00</td><td>Pendente</td></tr>
-                  <tr data-mensalidade-id="m2"><td>10/09/2025</td><td>150.00</td><td>Pago</td></tr>
+                  <tr data-mensalidade-id="m1"><td>05/10/2025</td><td>10/10/2025</td><td>150.00</td><td>Pendente</td></tr>
+                  <tr data-mensalidade-id="m2"><td>05/09/2025</td><td>10/09/2025</td><td>150.00</td><td>Pago</td></tr>
               `;
     } else if (alunoId === "B456") {
       dadosHtml = `
-                  <tr data-mensalidade-id="m3"><td>10/10/2025</td><td>150.00</td><td>Pago</td></tr>
-                  <tr data-mensalidade-id="m4"><td>10/09/2025</td><td>150.00</td><td>Pago</td></tr>
+                  <tr data-mensalidade-id="m3"><td>05/10/2025</td><td>10/10/2025</td><td>150.00</td><td>Pago</td></tr>
+                  <tr data-mensalidade-id="m4"><td>05/09/2025</td><td>10/09/2025</td><td>150.00</td><td>Pago</td></tr>
               `;
     } else {
       dadosHtml =
@@ -304,3 +461,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+function mostrarAlerta(mensagem, tipo, modal) {
+  modal.textContent = mensagem;
+  modal.className = `alert alert-${tipo}`;
+}
