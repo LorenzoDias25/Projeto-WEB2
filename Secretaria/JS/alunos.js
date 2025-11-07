@@ -4,6 +4,39 @@ document.addEventListener("DOMContentLoaded", function () {
   let historicoSelecionado = null;
   let mensalidadeSelecionada = null;
 
+  // --- DADOS FICTÍCIOS (Simulando o Spring Boot) ---
+  // Lista de todas as disciplinas disponíveis para cadastro
+  const TODAS_DISCIPLINAS = [
+    { id: 1, nome: "WEB 2", turma: "308.B" },
+    { id: 2, nome: "POO", turma: "101.A" },
+    { id: 3, nome: "Banco de Dados", turma: "308.B" },
+    { id: 4, nome: "Redes", turma: "205.A" },
+    { id: 5, nome: "Eng. de Software", turma: "308.B" },
+  ];
+  // Simulação de dados do aluno (para modo Edição)
+  const DADOS_ALUNO_A123 = {
+    endereco: {
+      rua: "Rua Fictícia, 123",
+      bairro: "Centro",
+      numero: "123",
+      cidade: "Rio de Janeiro",
+      cep: "20000-000",
+      complemento: "Apto 101",
+    },
+    disciplinasMatriculadas: [1, 3], // IDs: WEB 2 e Banco de Dados
+  };
+  const DADOS_ALUNO_B456 = {
+    endereco: {
+      rua: "Avenida Teste, 456",
+      bairro: "Tijuca",
+      numero: "456",
+      cidade: "Rio de Janeiro",
+      cep: "20500-000",
+      complemento: "",
+    },
+    disciplinasMatriculadas: [2, 4], // IDs: POO e Redes
+  };
+
   //Enum Botoes Alunos
   const BtnAlunos = Object.freeze({
     CADASTRAR: "cadastrar",
@@ -62,20 +95,28 @@ document.addEventListener("DOMContentLoaded", function () {
     "alertaModalDesativarAlunos"
   );
 
-  // --- Seletores Modal Editar Aluno ---
-  const modalEditarAluno = document.getElementById("modalEditarAluno");
-  const editMatricula = document.getElementById("editMatricula");
-  const editNome = document.getElementById("editNome");
-  const editEmail = document.getElementById("editEmail");
-  const editCPF = document.getElementById("editCPF");
-  const editNascimento = document.getElementById("editNascimento");
-  const editCelular = document.getElementById("editCelular");
-  const editTurma = document.getElementById("editTurma");
-  const editStatus = document.getElementById("editStatus");
-  const btnSalvarEdicaoAluno = document.getElementById("btnSalvarEdicaoAluno");
-  const alertaModalEditarAlunos = document.getElementById(
-    "alertaModalEditarAlunos"
+  //Seletores do Modal Gerenciar Alunos
+  const modalGerenciarAluno = document.getElementById("modalGerenciarAluno");
+  const modalAlunoTitulo = document.getElementById("modalAlunoTitulo");
+  const listaDisciplinasCheckboxes = document.getElementById(
+    "listaDisciplinasCheckboxes"
   );
+  const btnSalvarAluno = document.getElementById("btnSalvarAluno");
+
+  // Inputs - Dados Pessoais
+  const alunoNome = document.getElementById("alunoNome");
+  const alunoCPF = document.getElementById("alunoCPF");
+  const alunoEmail = document.getElementById("alunoEmail");
+  const alunoCelular = document.getElementById("alunoCelular");
+  const alunoNascimento = document.getElementById("alunoNascimento");
+
+  // Inputs - Endereço
+  const alunoRua = document.getElementById("alunoRua");
+  const alunoNumero = document.getElementById("alunoNumero");
+  const alunoBairro = document.getElementById("alunoBairro");
+  const alunoCidade = document.getElementById("alunoCidade");
+  const alunoCEP = document.getElementById("alunoCEP");
+  const alunoComplemento = document.getElementById("alunoComplemento");
 
   // --- Seletores Modal Editar Histórico ---
   const modalEditarHistorico = document.getElementById("modalEditarHistorico");
@@ -153,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       // Habilita botões principais
-      btnVisualizarAluno.disabled = false;
       btnEditarAluno.disabled = false;
       btnDesativarAluno.disabled = false;
       btnInserirMensalidade.disabled = false;
@@ -223,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("--- ✅ Mensalidade Selecionada ---", mensalidadeSelecionada);
   });
 
-  // --- LÓGICA 5: MODAIS (EDIÇÃO E CADASTRO) ---
+  // --- LÓGICA 5: MODAL DESAIVAR ---
 
   // Modal Desativar Alunos
   modalDesativar.addEventListener("show.bs.modal", function () {
@@ -235,6 +275,107 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     inputConfirmarCodigo.value = "";
     alertaDesativar.classList.add("d-none");
+  });
+
+  //--- LÓGICA 6: GERENCIAR ALUNOS
+  modalGerenciarAluno.addEventListener("show.bs.modal", function (event) {
+    const triggerButton = event.relatedTarget;
+
+    if (triggerButton && triggerButton.id === "btnEditarAluno") {
+      // --- MODO EDIÇÃO ---
+      modalAlunoTitulo.textContent = "Editar Aluno";
+      if (!alunoSelecionado) return; // Segurança
+
+      // Carrega dados pessoais (da tabela)
+      alunoNome.value = alunoSelecionado.nome;
+      alunoCPF.value = alunoSelecionado.cpf;
+      alunoEmail.value = alunoSelecionado.email;
+      alunoCelular.value = alunoSelecionado.celular;
+      alunoNascimento.value = alunoSelecionado.nascimento;
+
+      // Simula busca (fetch) por dados de endereço e disciplinas
+      // (No mundo real, isso seria uma chamada 'await fetch(...)')
+      let dadosExtras =
+        alunoSelecionado.id === "A123" ? DADOS_ALUNO_A123 : DADOS_ALUNO_B456;
+
+      // Carrega endereço
+      alunoRua.value = dadosExtras.endereco.rua;
+      alunoNumero.value = dadosExtras.endereco.numero;
+      alunoBairro.value = dadosExtras.endereco.bairro;
+      alunoCidade.value = dadosExtras.endereco.cidade;
+      alunoCEP.value = dadosExtras.endereco.cep;
+      alunoComplemento.value = dadosExtras.endereco.complemento;
+
+      // Carrega disciplinas (marcando as que o aluno já tem)
+      carregarDisciplinas(dadosExtras.disciplinasMatriculadas);
+    } else {
+      // --- MODO CADASTRO ---
+      modalAlunoTitulo.textContent = "Cadastrar Novo Aluno";
+
+      // Limpa dados pessoais
+      alunoNome.value = "";
+      alunoCPF.value = "";
+      alunoEmail.value = "";
+      alunoCelular.value = "";
+      alunoNascimento.value = "";
+
+      // Limpa endereço
+      alunoRua.value = "";
+      alunoNumero.value = "";
+      alunoBairro.value = "";
+      alunoCidade.value = "";
+      alunoCEP.value = "";
+      alunoComplemento.value = "";
+
+      // Carrega disciplinas (sem nenhuma marcada)
+      carregarDisciplinas([]);
+    }
+  });
+
+  // Confirmar Cadastro/Edicao Aluno
+  btnSalvarAluno.addEventListener("click", function () {
+    // Coleta todos os dados do formulário
+    const dadosPessoais = {
+      nome: alunoNome.value,
+      cpf: alunoCPF.value,
+      email: alunoEmail.value,
+      celular: alunoCelular.value,
+      nascimento: alunoNascimento.value,
+    };
+
+    const dadosEndereco = {
+      rua: alunoRua.value,
+      numero: alunoNumero.value,
+      // ... etc ...
+    };
+
+    // Coleta as disciplinas marcadas
+    const disciplinasMarcadas = [];
+    document
+      .querySelectorAll("#listaDisciplinasCheckboxes .form-check-input:checked")
+      .forEach((input) => {
+        disciplinasMarcadas.push(input.value); // 'value' aqui seria o ID da disciplina
+      });
+
+    if (alunoSelecionado) {
+      // MODO EDIÇÃO
+      console.log("--- ✅ SALVANDO (EDIÇÃO) ---");
+      console.log("ID Aluno:", alunoSelecionado.id);
+      console.log("Dados Pessoais:", dadosPessoais);
+      console.log("Endereço:", dadosEndereco);
+      console.log("Disciplinas:", disciplinasMarcadas);
+    } else {
+      // MODO CADASTRO
+      console.log("--- ✅ SALVANDO (CADASTRO) ---");
+      console.log("Dados Pessoais:", dadosPessoais);
+      console.log("Endereço:", dadosEndereco);
+      console.log("Disciplinas:", disciplinasMarcadas);
+    }
+
+    // Fecha o modal
+    bootstrap.Modal.getInstance(modalGerenciarAluno).hide();
+    // Reseta a seleção na tabela principal
+    resetarSelecaoAluno();
   });
 
   //Confirma desativacao aluno
@@ -268,73 +409,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(() => {
       bootstrap.Modal.getInstance(modalDesativar).hide();
-    }, 500);
-  });
-
-  // Modal Editar Aluno
-  modalEditarAluno.addEventListener("show.bs.modal", function () {
-    if (alunoSelecionado) {
-      editNome.value = alunoSelecionado.nome;
-      editEmail.value = alunoSelecionado.email;
-      editCPF.value = alunoSelecionado.cpf;
-      editNascimento.value = alunoSelecionado.nascimento;
-      editCelular.value = alunoSelecionado.celular;
-      editTurma.value = alunoSelecionado.turma;
-    }
-
-    alertaModalEditarAlunos.classList.add("d-none");
-  });
-
-  //Confirma Edicao aluno
-  btnSalvarEdicaoAluno.addEventListener("click", function () {
-    if (editNome.value == "") {
-      mostrarAlerta(
-        "Nome em branco",
-        tipoAlert.DANGER,
-        alertaModalEditarAlunos
-      );
-      return;
-    } else if (editEmail.value == "") {
-      mostrarAlerta(
-        "Email em branco",
-        tipoAlert.DANGER,
-        alertaModalEditarAlunos
-      );
-      return;
-    } else if (editCPF.value == "") {
-      mostrarAlerta("CPF em branco", tipoAlert.DANGER, alertaModalEditarAlunos);
-      return;
-    } else if (editNascimento.value == "") {
-      mostrarAlerta(
-        "Nascimento em branco",
-        tipoAlert.DANGER,
-        alertaModalEditarAlunos
-      );
-      return;
-    } else if (editCelular.value == "") {
-      mostrarAlerta(
-        "Celular em branco",
-        tipoAlert.DANGER,
-        alertaModalEditarAlunos
-      );
-      return;
-    } else if (editTurma.value == "") {
-      mostrarAlerta(
-        "Turma em branco",
-        tipoAlert.DANGER,
-        alertaModalEditarAlunos
-      );
-      return;
-    }
-
-    mostrarAlerta(
-      "Operação concluída",
-      tipoAlert.SUCESS,
-      alertaModalEditarAlunos
-    );
-
-    setTimeout(() => {
-      bootstrap.Modal.getInstance(modalEditarAluno).hide();
     }, 500);
   });
 
@@ -473,6 +547,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- FUNÇÕES AUXILIARES ---
 
+  //Gera a Lista de checkboxes de disciplinas
+  function carregarDisciplinas(disciplinasMatriculadas = []) {
+    let htmlCheckboxes = "";
+
+    TODAS_DISCIPLINAS.forEach((disciplina) => {
+      // Verifica se o ID da disciplina está na lista de matriculadas
+      const estaMarcado = disciplinasMatriculadas.includes(disciplina.id);
+      const checkedAttr = estaMarcado ? "checked" : "";
+
+      htmlCheckboxes += `
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="${disciplina.id}" id="check-${disciplina.id}" ${checkedAttr}>
+                    <label class="form-check-label" for="check-${disciplina.id}">
+                      ${disciplina.nome} - Turma ${disciplina.turma}
+                    </label>
+                  </div>
+              `;
+    });
+
+    listaDisciplinasCheckboxes.innerHTML = htmlCheckboxes;
+  }
+
   // Simulação de carregamento do Histórico
   function carregarHistoricoSimulado(alunoId) {
     tabelaHistoricoBody.innerHTML =
@@ -553,6 +649,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+// Função de Reset: Tabela Principal
+function resetarSelecaoAluno() {
+  btnEditarAluno.disabled = true;
+  btnDesativarAluno.disabled = true;
+  alunoSelecionado = null;
+  tabelaAlunosBody
+    .querySelectorAll("tr")
+    .forEach((row) => row.classList.remove("table-active"));
+}
 
 function mostrarAlerta(mensagem, tipo, modal) {
   modal.textContent = mensagem;

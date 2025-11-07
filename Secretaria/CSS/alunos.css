@@ -175,3 +175,41 @@ body {
 .modal .form-control:disabled {
   background-color: #f0f0f0;
 }
+
+#modalGerenciarAluno .info-box {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.05
+  ); /* Fundo levemente mais escuro para caixas internas */
+}
+
+#modalGerenciarAluno .form-control {
+  font-family: "Patrick Hand", cursive;
+  font-weight: bold;
+  font-size: 1.3rem; /* Fonte menor para caber mais campos */
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+  min-height: calc(3.5rem + 2px);
+}
+
+#modalGerenciarAluno .form-control:disabled {
+  background-color: #f0f0f0;
+}
+
+.disciplinas-list-box {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.disciplinas-list-box .form-check {
+  font-size: 1.5rem;
+}
+.disciplinas-list-box .form-check-input {
+  width: 1.3em;
+  height: 1.3em;
+}

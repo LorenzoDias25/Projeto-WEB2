@@ -155,14 +155,11 @@
 
           <!-- Botões de Ação da Tabela Principal -->
           <div class="d-flex justify-content-between action-buttons">
-            <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#modalCadastrarAluno">
+            <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#modalGerenciarAluno">
               Cadastrar
             </button>
-            <button class="btn btn-custom" id="btnVisualizarAluno" disabled>
-              Visualizar
-            </button>
-            <button class="btn btn-custom" id="btnEditarAluno" data-bs-toggle="modal" data-bs-target="#modalEditarAluno"
-              disabled>
+            <button class="btn btn-custom" id="btnEditarAluno" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarAluno" disabled>
               Editar
             </button>
             <button class="btn btn-custom" id="btnDesativarAluno" data-bs-toggle="modal"
@@ -265,58 +262,89 @@
     </div>
   </div>
 
-  <!-- 2. Modal Cadastrar Aluno -->
-  <div class="modal fade" id="modalCadastrarAluno" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal fade" id="modalGerenciarAluno" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered"> <!-- MODAL EXTRA LARGE (XL) -->
       <div class="modal-content"
         style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
         <div class="modal-body" style="padding: 2rem;">
-          <h3 class="text-center mb-4" style="font-size: 2.5rem;">Cadastrar Novo Aluno</h3>
-          <div class="row">
-            <div class="col-md-6">
-              <input type="text" class="form-control mb-3" id="cadNome" placeholder="Nome Completo">
-              <input type="text" class="form-control mb-3" id="cadMatricula" placeholder="Matrícula (Ex: A123)">
-              <input type="text" class="form-control mb-3" id="cadCPF" placeholder="CPF">
-              <input type="email" class="form-control mb-3" id="cadEmail" placeholder="Email">
-            </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control mb-3" id="cadNascimento" placeholder="Nascimento (dd/mm/aaaa)">
-              <input type="text" class="form-control mb-3" id="cadCelular" placeholder="Celular">
-              <input type="text" class="form-control mb-3" id="cadTurma" placeholder="Turma">
-            </div>
-          </div>
-          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarCadastro">Confirmar Cadastro</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- 3. Modal Editar Aluno -->
-  <div class="modal fade" id="modalEditarAluno" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content"
-        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
-        <div class="modal-body" style="padding: 2rem;">
-          <h3 class="text-center mb-4" style="font-size: 2.5rem;">Editar Aluno</h3>
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;" id="modalAlunoTitulo">Cadastrar Novo Aluno</h3>
+
           <div class="row">
-            <div class="col-md-6">
-              <input type="text" class="form-control mb-3" id="editNome" placeholder="Nome Completo">
-              <input type="text" class="form-control mb-3" id="editEmail" placeholder="Email">
-              <input type="text" class="form-control mb-3" id="editCPF" placeholder="CPF">
+            <!-- Coluna Esquerda do Modal (Dados Pessoais e Endereço) -->
+            <div class="col-lg-7">
+
+              <!-- Caixa Dados Pessoais -->
+              <div class="info-box">
+                <h4 class="text-center" style="font-size: 2rem;">Dados pessoais</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-3" id="alunoNome" placeholder="Nome">
+                    <input type="text" class="form-control mb-3" id="alunoCPF" placeholder="CPF">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="email" class="form-control mb-3" id="alunoEmail" placeholder="Email">
+                    <input type="text" class="form-control mb-3" id="alunoCelular" placeholder="Celular">
+                  </div>
+                </div>
+                <input type="text" class="form-control" id="alunoNascimento"
+                  placeholder="Data de Nascimento (dd/mm/aaaa)">
+              </div>
+
+              <!-- Caixa Endereço -->
+              <div class="info-box">
+                <h4 class="text-center" style="font-size: 2rem;">Endereço</h4>
+                <div class="row">
+                  <div class="col-md-8">
+                    <input type="text" class="form-control mb-3" id="alunoRua" placeholder="Rua">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control mb-3" id="alunoNumero" placeholder="Numero">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-3" id="alunoBairro" placeholder="Bairro">
+                    <input type="text" class="form-control mb-3" id="alunoCEP" placeholder="CEP">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control mb-3" id="alunoCidade" placeholder="Cidade">
+                    <input type="text" class="form-control mb-3" id="alunoComplemento" placeholder="Complemento">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control mb-3" id="editNascimento" placeholder="Nascimento">
-              <input type="text" class="form-control mb-3" id="editCelular" placeholder="Celular">
-              <input type="text" class="form-control mb-3" id="editTurma" placeholder="Turma">
+
+            <!-- Coluna Direita do Modal (Disciplinas) -->
+            <div class="col-lg-5">
+              <div class="info-box">
+                <h4 class="text-center" style="font-size: 2rem;">Lista de disciplinas</h4>
+                <p style="font-size: 1.2rem; opacity: 0.8;">Exemplo:</p>
+
+                <!-- Div onde o JS vai injetar os checkboxes -->
+                <div class="disciplinas-list-box" id="listaDisciplinasCheckboxes">
+                  <!-- Exemplo de como o JS vai gerar -->
+                  <!-- 
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="WEB2-308B" id="check-1">
+                    <label class="form-check-label" for="check-1">WEB 2 - Turma 308.B</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="POO-101A" id="check-2">
+                    <label class="form-check-label" for="check-2">POO - Turma 101.A</label>
+                  </div>
+                   -->
+                </div>
+              </div>
+              <button type="button" class="btn btn-custom w-100" id="btnSalvarAluno">
+                Confirmar
+              </button>
             </div>
           </div>
-          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarEdicaoAluno">Confirmar
-            Alterações</button>
-          <div id="alertaModalEditarAlunos" class="alert mt-3 d-none"></div>
+
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- 4. Modal Editar Histórico -->
