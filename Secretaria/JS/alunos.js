@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnConfirmarDesativacao = document.getElementById(
     "btnConfirmarDesativacao"
   );
-  const alertaDesativar = document.getElementById("alertaDesativar");
+  const alertaModalDesativarAlunos = document.getElementById(
+    "alertaModalDesativarAlunos"
+  );
 
   // --- Seletores Modal Editar Aluno ---
   const modalEditarAluno = document.getElementById("modalEditarAluno");
@@ -70,6 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const editCelular = document.getElementById("editCelular");
   const editTurma = document.getElementById("editTurma");
   const editStatus = document.getElementById("editStatus");
+  const btnSalvarEdicaoAluno = document.getElementById("btnSalvarEdicaoAluno");
+  const alertaModalEditarAlunos = document.getElementById(
+    "alertaModalEditarAlunos"
+  );
 
   // --- Seletores Modal Editar Histórico ---
   const modalEditarHistorico = document.getElementById("modalEditarHistorico");
@@ -219,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- LÓGICA 5: MODAIS (EDIÇÃO E CADASTRO) ---
 
-  // Modal Desativar
+  // Modal Desativar Alunos
   modalDesativar.addEventListener("show.bs.modal", function () {
     if (alunoSelecionado) {
       desativarMensagem.textContent = `O aluno(a) ${alunoSelecionado.nome} será desativado`;
@@ -230,20 +236,106 @@ document.addEventListener("DOMContentLoaded", function () {
     inputConfirmarCodigo.value = "";
     alertaDesativar.classList.add("d-none");
   });
-  // (Lógica do btnConfirmarDesativacao está nas funções auxiliares)
+
+  //Confirma desativacao aluno
+  btnConfirmarDesativacao.addEventListener("click", function () {
+    const codigoDigitado = inputConfirmarCodigo.value;
+    const codigoCorreto = this.dataset.codigoCorreto;
+
+    if (codigoDigitado == "") {
+      mostrarAlerta(
+        "Matricula em branco",
+        tipoAlert.SUCESS,
+        alertaModalDesativarAlunos
+      );
+      return;
+    }
+
+    if (codigoCorreto != codigoDigitado) {
+      mostrarAlerta(
+        "Matricula incorreta",
+        tipoAlert.SUCESS,
+        alertaModalDesativarAlunos
+      );
+      return;
+    }
+
+    mostrarAlerta(
+      "Operação concluída",
+      tipoAlert.SUCESS,
+      alertaModalDesativarAlunos
+    );
+
+    setTimeout(() => {
+      bootstrap.Modal.getInstance(modalDesativar).hide();
+    }, 500);
+  });
 
   // Modal Editar Aluno
   modalEditarAluno.addEventListener("show.bs.modal", function () {
     if (alunoSelecionado) {
-      editMatricula.value = alunoSelecionado.matricula;
       editNome.value = alunoSelecionado.nome;
       editEmail.value = alunoSelecionado.email;
       editCPF.value = alunoSelecionado.cpf;
       editNascimento.value = alunoSelecionado.nascimento;
       editCelular.value = alunoSelecionado.celular;
       editTurma.value = alunoSelecionado.turma;
-      editStatus.value = alunoSelecionado.status;
     }
+
+    alertaModalEditarAlunos.classList.add("d-none");
+  });
+
+  //Confirma Edicao aluno
+  btnSalvarEdicaoAluno.addEventListener("click", function () {
+    if (editNome.value == "") {
+      mostrarAlerta(
+        "Nome em branco",
+        tipoAlert.DANGER,
+        alertaModalEditarAlunos
+      );
+      return;
+    } else if (editEmail.value == "") {
+      mostrarAlerta(
+        "Email em branco",
+        tipoAlert.DANGER,
+        alertaModalEditarAlunos
+      );
+      return;
+    } else if (editCPF.value == "") {
+      mostrarAlerta("CPF em branco", tipoAlert.DANGER, alertaModalEditarAlunos);
+      return;
+    } else if (editNascimento.value == "") {
+      mostrarAlerta(
+        "Nascimento em branco",
+        tipoAlert.DANGER,
+        alertaModalEditarAlunos
+      );
+      return;
+    } else if (editCelular.value == "") {
+      mostrarAlerta(
+        "Celular em branco",
+        tipoAlert.DANGER,
+        alertaModalEditarAlunos
+      );
+      return;
+    } else if (editTurma.value == "") {
+      mostrarAlerta(
+        "Turma em branco",
+        tipoAlert.DANGER,
+        alertaModalEditarAlunos
+      );
+      return;
+    }
+
+    mostrarAlerta(
+      "Operação concluída",
+      tipoAlert.SUCESS,
+      alertaModalEditarAlunos
+    );
+
+    setTimeout(() => {
+      bootstrap.Modal.getInstance(modalEditarAluno).hide();
+    }, 500);
   });
 
   // Modal Editar Mensalidade

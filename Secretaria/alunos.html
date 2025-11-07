@@ -259,7 +259,7 @@
             <label for="inputConfirmarCodigo" style="color: #555;">Matrícula</label>
           </div>
           <button type="button" class="btn btn-custom w-100" id="btnConfirmarDesativacao">Confirmar</button>
-          <div id="alertaDesativar" class="alert mt-3 d-none"></div>
+          <div id="alertaModalDesativarAlunos" class="alert mt-3 d-none"></div>
         </div>
       </div>
     </div>
@@ -300,7 +300,6 @@
           <h3 class="text-center mb-4" style="font-size: 2.5rem;">Editar Aluno</h3>
           <div class="row">
             <div class="col-md-6">
-              <input type="text" class="form-control mb-3" id="editMatricula" placeholder="Matrícula" disabled>
               <input type="text" class="form-control mb-3" id="editNome" placeholder="Nome Completo">
               <input type="text" class="form-control mb-3" id="editEmail" placeholder="Email">
               <input type="text" class="form-control mb-3" id="editCPF" placeholder="CPF">
@@ -309,14 +308,15 @@
               <input type="text" class="form-control mb-3" id="editNascimento" placeholder="Nascimento">
               <input type="text" class="form-control mb-3" id="editCelular" placeholder="Celular">
               <input type="text" class="form-control mb-3" id="editTurma" placeholder="Turma">
-              <input type="text" class="form-control mb-3" id="editStatus" placeholder="Status">
             </div>
           </div>
           <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarEdicaoAluno">Confirmar
             Alterações</button>
+          <div id="alertaModalEditarAlunos" class="alert mt-3 d-none"></div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- 4. Modal Editar Histórico -->
