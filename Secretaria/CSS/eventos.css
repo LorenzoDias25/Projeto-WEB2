@@ -96,7 +96,7 @@ body {
   overflow-y: auto;
   border: 3px solid var(--cor-texto-borda);
   border-radius: 15px;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .table-custom {
@@ -167,8 +167,13 @@ body {
   /* Altura menor para as tabelas secundárias */
 }
 
+.info-box .action-buttons {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+
 .info-box .btn-custom {
-  width: 100%;
+  width: 48%; /* Para caber 2 botões */
   margin-top: 0.5rem;
 }
 
@@ -181,33 +186,70 @@ body {
   border-radius: 10px;
   min-height: calc(3.5rem + 10px);
 }
-
 .modal .form-floating > .form-control {
   padding-top: 2rem;
   padding-bottom: 0.75rem;
 }
-
 .modal .form-floating > .form-control:not(:placeholder-shown) ~ label {
   transform: scale(0.85) translateY(-0.8rem) translateX(0.15rem);
 }
-
 .modal .form-floating > label {
   padding-top: 0.8rem;
 }
-
 .modal .form-control:disabled {
   background-color: #f0f0f0;
 }
 
-/* Estilo específico para o modal de desvincular */
-#modalDesvincular .modal-body h3 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
+/* ----- NOVO: Estilos para o Modal de "Tipos de Evento" ----- */
+#modalGerenciarTipo .form-control,
+#modalGerenciarTipo .btn-dropdown-custom {
+  font-family: "Patrick Hand", cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+  min-height: calc(3.5rem + 10px);
+  text-align: left; /* Alinhar o texto do botão à esquerda */
+  width: 100%;
+  background-color: white; /* Cor padrão */
 }
-#modalDesvincular .modal-body p {
-  font-size: 1.8rem;
-  color: var(--cor-texto-borda); /* Garante a cor padrão */
+
+/* Alinha a seta do dropdown à direita */
+#modalGerenciarTipo .btn-dropdown-custom::after {
+  float: right;
+  margin-top: 0.8rem;
 }
-#modalDesvincular .modal-body p strong {
-  color: #dc3545; /* Cor vermelha para o nome da disciplina/turma */
+
+/* Classe para o dropdown com scroll */
+.dropdown-menu-scroll {
+  max-height: 200px;
+  overflow-y: auto;
+  /* Estilização para combinar com o design */
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.3rem;
+  width: 100%;
+  text-align: center;
+  border: 3px solid var(--cor-texto-borda);
+  background-color: var(--cor-placeholder);
+}
+
+.dropdown-menu-scroll .dropdown-item {
+  font-weight: bold;
+  color: var(--cor-texto-borda);
+}
+.dropdown-menu-scroll .dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#modalGerenciarEvento .form-control,
+#modalGerenciarEvento .btn-dropdown-custom {
+  font-family: "Patrick Hand", cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+  min-height: calc(3.5rem + 10px);
+  text-align: left; /* Alinhar o texto do botão à esquerda */
+  width: 100%;
+  background-color: white; /* Cor padrão */
 }

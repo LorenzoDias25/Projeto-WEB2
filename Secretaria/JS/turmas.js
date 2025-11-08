@@ -418,9 +418,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .forEach((row) => row.classList.remove("table-active"));
     }
   }
-});
 
-function mostrarAlerta(mensagem, tipo, modal) {
-  modal.textContent = mensagem;
-  modal.className = `alert alert-${tipo}`;
-}
+  function mostrarAlerta(mensagem, tipo, modal) {
+    modal.textContent = mensagem;
+    modal.className = `alert alert-${tipo}`;
+  }
+});

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Eventos</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="/Secretaria/CSS/eventos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container mt-3 mb-3">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg content-block navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/Evento/index.html"><img src="/Assets/logo.png" style="height: 75px; width: auto;"
+            alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/Evento/index.html">Eventos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Secretaria
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Secretaria/alunos.html">Alunos</a></li>
+                <li><a class="dropdown-item" href="/Secretaria/disciplinas.html">Disciplinas</a></li>
+                <li><a class="dropdown-item" href="/Secretaria/turmas.html">Turmas</a></li>
+                <li><a class="dropdown-item" href="/Secretaria/eventos.html">Eventos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Adm
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Adm/contas.html">Contas</a></li>
+                <li><a class="dropdown-item" href="/Adm/funcionarios.html">Funcionários</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Perfil/perfil.html">Perfil</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Fim Navbar -->
+
+    <!-- Seção Principal -->
+    <section class="content-block">
+      <div class="row">
+
+        <!-- Coluna da Esquerda (Tabela Principal) -->
+        <div class="col-lg-8">
+
+          <!-- Busca e Filtros -->
+          <div class="input-group search-bar-custom mb-3">
+            <input type="text" class="form-control" placeholder="Pesquisar evento...">
+            <button class="btn" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+          <div class="row filter-group align-items-center">
+            <div class="col-auto">Pesquisar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioNome" value="nome" checked>
+                <label class="form-check-label" for="radioNome">Nome</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioTipo" value="tipo">
+                <label class="form-check-label" for="radioTipo">Tipo</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioLocal" value="local">
+                <label class="form-check-label" for="radioLocal">Local</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioIncio" value="incio">
+                <label class="form-check-label" for="radioIncio">Incio</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioFim" value="fim">
+                <label class="form-check-label" for="radioFim">Fim</label>
+              </div>
+            </div>
+          </div>
+          <div class="row filter-group align-items-center mb-3">
+            <div class="col-auto">Ordenar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioAZ" value="az" checked>
+                <label class="form-check-label" for="radioAZ">A-Z</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioZA" value="za">
+                <label class="form-check-label" for="radioZA">Z-A</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela Principal de Eventos -->
+          <div class="table-scrollable table-responsive">
+            <table class="table table-custom text-center table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Inicio</th>
+                  <th scope="col">Fim</th>
+                  <th scope="col">Participantes</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Local</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaEventosBody">
+                <tr data-evento-id="E1">
+                  <td>Show de Rock</td>
+                  <td>10/12/2025</td>
+                  <td>10/12/2025</td>
+                  <td>1500</td>
+                  <td>Show</td>
+                  <td>Estádio Principal</td>
+                </tr>
+                <tr data-evento-id="E2">
+                  <td>Feira de TI</td>
+                  <td>15/11/2025</td>
+                  <td>17/11/2025</td>
+                  <td>250</td>
+                  <td>Feira</td>
+                  <td>Quadra</td>
+                </tr>
+                <tr data-evento-id="E3">
+                  <td>Palestra de IA</td>
+                  <td>20/11/2025</td>
+                  <td>20/11/2025</td>
+                  <td>80</td>
+                  <td>Palestra</td>
+                  <td>Auditório B</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Botões de Ação da Tabela Principal -->
+          <div class="d-flex justify-content-evenly action-buttons">
+            <button class="btn btn-custom" id="btnInserirEvento" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarEvento">
+              Inserir
+            </button>
+            <button class="btn btn-custom" id="btnEditarEvento" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarEvento" disabled>
+              Editar
+            </button>
+          </div>
+
+        </div>
+        <!-- Fim Coluna Esquerda -->
+
+        <!-- Coluna da Direita (Tabelas Secundárias) -->
+        <div class="col-lg-4 mt-4 mt-lg-0">
+
+          <!-- Caixa Locais -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Locais</h3>
+            <div class="table-scrollable table-responsive">
+              <table class="table table-custom text-center table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelaLocaisBody">
+                  <tr data-local-id="L1">
+                    <td>Estádio Principal</td>
+                  </tr>
+                  <tr data-local-id="L2">
+                    <td>Quadra</td>
+                  </tr>
+                  <tr data-local-id="L3">
+                    <td>Auditório B</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-evenly action-buttons">
+              <button class="btn btn-custom" id="btnInserirLocal" data-bs-toggle="modal"
+                data-bs-target="#modalGerenciarLocal">
+                Inserir
+              </button>
+              <button class="btn btn-custom" id="btnEditarLocal" data-bs-toggle="modal"
+                data-bs-target="#modalGerenciarLocal" disabled>
+                Editar
+              </button>
+            </div>
+          </div>
+          <!-- Fim Caixa Locais -->
+
+          <!-- Caixa Tipo de Evento -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Tipo de Evento</h3>
+            <div class="table-scrollable table-responsive">
+              <table class="table table-custom text-center table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Local</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelaTiposBody">
+                  <tr data-tipo-id="T1">
+                    <td>Show</td>
+                    <td>Estádio Principal</td>
+                  </tr>
+                  <tr data-tipo-id="T2">
+                    <td>Feira</td>
+                    <td>Quadra</td>
+                  </tr>
+                  <tr data-tipo-id="T3">
+                    <td>Palestra</td>
+                    <td>Auditório B</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-between action-buttons">
+              <button class="btn btn-custom" id="btnInserirTipo" data-bs-toggle="modal"
+                data-bs-target="#modalGerenciarTipo">
+                Inserir
+              </button>
+              <button class="btn btn-custom" id="btnEditarTipo" data-bs-toggle="modal"
+                data-bs-target="#modalGerenciarTipo" disabled>
+                Editar
+              </button>
+            </div>
+          </div>
+          <!-- Fim Caixa Tipo de Evento -->
+
+        </div>
+        <!-- Fim Coluna Direita -->
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- NOVO MODAL: Gerenciar Local (Inserir/Editar) -->
+  <div class="modal fade" id="modalGerenciarLocal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content"
+        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;" id="modalLocalTitulo">Inserir Local</h3>
+
+          <!-- Campo de Nome (com o estilo rosa do seu esboço) -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editLocalNome" placeholder="Nome do Local">
+            <label for="editLocalNome" style="color: #555;">Nome</label>
+          </div>
+
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarLocal">Confirmar</button>
+          <div id="alertaModalLocal" class="alert mt-3 d-none" style="text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOVO MODAL: Gerenciar Tipo de Evento (Inserir/Editar) -->
+  <div class="modal fade" id="modalGerenciarTipo" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content"
+        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;" id="modalTipoTitulo">Inserir Tipo de Evento</h3>
+
+          <!-- Dropdown "Local" (Baseado em Tabela) -->
+          <div class="dropdown mb-3">
+            <button class="btn btn-dropdown-custom dropdown-toggle" type="button" id="btnDropdownLocal"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Selecione um Local
+            </button>
+            <!-- Menu do dropdown com a classe de scroll -->
+            <ul class="dropdown-menu dropdown-menu-scroll" id="dropdownMenuLocal" aria-labelledby="btnDropdownLocal">
+              <!-- Locais serão injetados aqui pelo JS -->
+            </ul>
+          </div>
+
+          <!-- Campo "Nome" (Rosa) -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editTipoNome" placeholder="Nome do Tipo">
+            <label for="editTipoNome" style="color: #555;">Nome</label>
+          </div>
+
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarTipo">Confirmar</button>
+          <div id="alertaModalTipoEvento" class="alert mt-3 d-none" style="text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOVO MODAL: Gerenciar Evento (Inserir/Editar) -->
+  <div class="modal fade" id="modalGerenciarEvento" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered"> <!-- modal-lg para mais espaço -->
+      <div class="modal-content"
+        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;" id="modalEventoTitulo">Inserir Evento</h3>
+
+          <div class="row">
+            <!-- Coluna Esquerda: Nome, Tipo, Local -->
+            <div class="col-md-6">
+              <!-- Nome -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="editEventoNome" placeholder="Nome do Evento">
+                <label for="editEventoNome" style="color: #555;">Nome</label>
+              </div>
+
+              <!-- Dropdown "Tipo" -->
+              <div class="dropdown mb-3">
+                <button class="btn btn-dropdown-custom dropdown-toggle" type="button" id="btnDropdownTipoEvento"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Selecione o Tipo
+                </button>
+                <ul class="dropdown-menu dropdown-menu-scroll" id="dropdownMenuTipoEvento"
+                  aria-labelledby="btnDropdownTipoEvento">
+                  <!-- Tipos de Evento serão injetados aqui pelo JS -->
+                </ul>
+              </div>
+
+              <!-- Local (preenchido automaticamente) -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="editEventoLocal" placeholder="Local (puxado pelo Tipo)">
+                <label for="editEventoLocal" style="color: #555;">Local</label>
+              </div>
+            </div>
+
+            <!-- Coluna Direita: Datas, Participantes -->
+            <div class="col-md-6">
+              <!-- Inicio -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="editEventoInicio" placeholder="Início (dd/mm/aaaa)">
+                <label for="editEventoInicio" style="color: #555;">Início (dd/mm/aaaa)</label>
+              </div>
+
+              <!-- Fim -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="editEventoFim" placeholder="Fim (dd/mm/aaaa)">
+                <label for="editEventoFim" style="color: #555;">Fim (dd/mm/aaaa)</label>
+              </div>
+
+              <!-- Participantes -->
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="editEventoParticipantes"
+                  placeholder="Previsão de Participantes">
+                <label for="editEventoParticipantes" style="color: #555;">Previsão de Participantes</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botão Confirmar -->
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarEvento">Botão de confirmar</button>
+          <div id="alertaModalGerenciarEvento" class="alert mt-3 d-none" style="text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/Secretaria/JS/eventos.js" defer></script>
+
+</body>
+
+</html>
