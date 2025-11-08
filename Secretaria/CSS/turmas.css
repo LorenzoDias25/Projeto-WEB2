@@ -1,0 +1,213 @@
+:root {
+  --cor-fundo-pagina: #fdf0e9;
+  --cor-bloco-principal: #42d1db;
+  --cor-placeholder: #fdd8d8;
+  --cor-texto-borda: #1e1e1e;
+}
+
+body {
+  font-family: "Patrick Hand", cursive;
+  background-color: var(--cor-fundo-pagina);
+  color: var(--cor-texto-borda);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Lógica dos Blocos de Conteúdo */
+.content-block {
+  background-color: var(--cor-bloco-principal);
+  padding: 1.5rem;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 0;
+}
+
+.content-block + .content-block {
+  border-top: none;
+}
+
+.container > .content-block:first-child {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.container > .content-block:last-child {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* Navbar */
+.navbar-custom {
+  padding: 0.5rem 1.5rem;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: var(--cor-texto-borda) !important;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+/* Barra de Busca */
+.search-bar-custom {
+  background-color: white;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 15px;
+  padding: 0.25rem 0.5rem;
+}
+
+.search-bar-custom .form-control {
+  border: none;
+  background: transparent;
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.search-bar-custom .form-control:focus {
+  box-shadow: none;
+  background: transparent;
+}
+
+.search-bar-custom .btn {
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  color: var(--cor-texto-borda);
+}
+
+/* Filtros */
+.filter-group {
+  font-size: 1.5rem;
+}
+
+.form-check-input {
+  border: 2px solid var(--cor-texto-borda);
+}
+
+.form-check-input:checked {
+  background-color: var(--cor-texto-borda);
+  border-color: var(--cor-texto-borda);
+}
+
+/* Tabelas */
+.table-scrollable {
+  max-height: 400px;
+  /* Altura da tabela principal */
+  overflow-y: auto;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.table-custom {
+  background-color: transparent !important;
+  color: var(--cor-texto-borda) !important;
+}
+
+.table-custom th,
+.table-custom td {
+  background-color: transparent !important;
+  color: var(--cor-texto-borda) !important;
+  border: none;
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table-custom thead th {
+  border-bottom: 3px solid var(--cor-texto-borda);
+  font-size: 1.3rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--cor-bloco-principal) !important;
+}
+
+.table-custom tbody tr.table-active {
+  background-color: var(--cor-placeholder) !important;
+  color: var(--cor-texto-borda) !important;
+}
+
+.table-custom tbody tr {
+  cursor: pointer;
+}
+
+/* Botões de Ação */
+.action-buttons {
+  border-top: 3px solid var(--cor-texto-borda);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-custom {
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: 3px solid var(--cor-texto-borda);
+  background-color: var(--cor-placeholder);
+  color: var(--cor-texto-borda);
+  border-radius: 10px;
+}
+
+.btn-custom:hover {
+  background-color: #fbc0c0;
+}
+
+/* Caixas de Informação (Direita) */
+.info-box {
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-box .table-scrollable {
+  max-height: 250px;
+  /* Altura menor para as tabelas secundárias */
+}
+
+.info-box .btn-custom {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Estilos dos Modais (Campos) */
+.modal .form-control {
+  font-family: "Patrick Hand", cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+  min-height: calc(3.5rem + 10px);
+}
+.modal .form-floating > .form-control {
+  padding-top: 2rem;
+  padding-bottom: 0.75rem;
+}
+.modal .form-floating > .form-control:not(:placeholder-shown) ~ label {
+  transform: scale(0.85) translateY(-0.8rem) translateX(0.15rem);
+}
+.modal .form-floating > label {
+  padding-top: 0.8rem;
+}
+.modal .form-control:disabled {
+  background-color: #f0f0f0;
+}
+
+/* CSS para a lista de checkboxes de disciplina (do novo modal) */
+.disciplinas-list-box {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 3px solid var(--cor-texto-borda);
+  border-radius: 10px;
+}
+.disciplinas-list-box .form-check {
+  font-size: 1.5rem;
+}
+.disciplinas-list-box .form-check-input {
+  width: 1.3em;
+  height: 1.3em;
+}

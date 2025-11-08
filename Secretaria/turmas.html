@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Turmas</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="/Secretaria/CSS/turmas.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container mt-3 mb-3">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg content-block navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/Evento/index.html"><img src="/Assets/logo.png" style="height: 75px; width: auto;"
+            alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/Evento/index.html">Eventos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Secretaria
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Secretaria/alunos.html">Alunos</a></li>
+                <li><a class="dropdown-item" href="/Secretaria/disciplinas.html">Disciplinas</a></li>
+                <li><a class="dropdown-item" href="/Secretaria/turmas.html">Turmas</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Adm
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Adm/contas.html">Contas</a></li>
+                <li><a class="dropdown-item" href="/Adm/funcionarios.html">Funcionários</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Perfil/perfil.html">Perfil</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Fim Navbar -->
+
+    <!-- Seção Principal -->
+    <section class="content-block">
+      <div class="row">
+
+        <!-- Coluna da Esquerda (Tabela Principal) -->
+        <div class="col-lg-8">
+
+          <!-- Busca e Filtros -->
+          <div class="input-group search-bar-custom mb-3">
+            <input type="text" class="form-control" placeholder="Pesquisar turma...">
+            <button class="btn" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+          <div class="row filter-group align-items-center">
+            <div class="col-auto">Pesquisar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioAno" value="ano" checked>
+                <label class="form-check-label" for="radioAno">Ano</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioTurma" value="turma">
+                <label class="form-check-label" for="radioTurma">Turma</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioSemestre" value="semestre">
+                <label class="form-check-label" for="radioSemestre">Semestre</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioTurno" value="turno">
+                <label class="form-check-label" for="radioTurno">Turno</label>
+              </div>
+            </div>
+          </div>
+          <div class="row filter-group align-items-center mb-3">
+            <div class="col-auto">Ordenar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioAZ" value="az" checked>
+                <label class="form-check-label" for="radioAZ">A-Z</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioZA" value="za">
+                <label class="form-check-label" for="radioZA">Z-A</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela Principal de Turmas -->
+          <div class="table-scrollable">
+            <div class="table-responsive">
+              <table class="table table-custom text-center table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Turno</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelaTurmasBody">
+                  <tr data-turma-id="T301">
+                    <td>T-301</td>
+                    <td>Informática 3A</td>
+                    <td>2025/1</td>
+                    <td>Noite</td>
+                  </tr>
+                  <tr data-turma-id="T302">
+                    <td>T-302</td>
+                    <td>Informática 3B</td>
+                    <td>2025/1</td>
+                    <td>Noite</td>
+                  </tr>
+                  <tr data-turma-id="T101">
+                    <td>T-101</td>
+                    <td>Edificações 1A</td>
+                    <td>2025/1</td>
+                    <td>Manhã</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Botões de Ação da Tabela Principal -->
+          <div class="d-flex justify-content-evenly action-buttons">
+            <button class="btn btn-custom" id="btnInserirTurma" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarTurma">
+              Inserir
+            </button>
+            <button class="btn btn-custom" id="btnEditarTurma" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarTurma" disabled>
+              Editar
+            </button>
+          </div>
+
+        </div>
+        <!-- Fim Coluna Esquerda -->
+
+        <!-- Coluna da Direita (Tabelas Secundárias) -->
+        <div class="col-lg-4 mt-4 mt-lg-0">
+
+          <!-- Caixa Disciplinas -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Disciplinas</h3>
+            <div class="table-scrollable">
+              <div class="table-responsive">
+                <table class="table table-custom text-center table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Disciplina</th>
+                      <th scope="col">Professor</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabelaDisciplinasBody">
+                    <tr>
+                      <td colspan="2">Selecione uma turma.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- Este botão abre o novo modal de checkboxes -->
+            <button class="btn btn-custom" id="btnEditarDisciplinas" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarDisciplinasDaTurma" disabled>
+              Editar
+            </button>
+          </div>
+          <!-- Fim Caixa Disciplinas -->
+
+          <!-- Caixa Alunos -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Alunos</h3>
+            <div class="table-scrollable">
+              <div class="table-responsive">
+                <table class="table table-custom text-center table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Nota-Final</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabelaAlunosBody">
+                    <tr>
+                      <td colspan="3">Selecione uma turma.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- Não há botão de ação para alunos neste esboço -->
+          </div>
+          <!-- Fim Caixa Alunos -->
+
+        </div>
+        <!-- Fim Coluna Direita -->
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- MODAIS (Coloque no final do <body>) -->
+
+  <!-- 1. Modal Inserir/Editar Turma -->
+  <div class="modal fade" id="modalGerenciarTurma" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content"
+        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;" id="modalTurmaTitulo">Inserir Turma</h3>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editCodigoTurma" placeholder="Código (Ex: T-401)">
+            <label for="editCodigoTurma" style="color: #555;">Código</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editNomeTurma" placeholder="Nome (Ex: Informática 4A)">
+            <label for="editNomeTurma" style="color: #555;">Nome</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editSemestreTurma" placeholder="Semestre (Ex: 2025/2)">
+            <label for="editSemestreTurma" style="color: #555;">Semestre</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editTurnoTurma" placeholder="Turno (Manhã, Tarde, Noite)">
+            <label for="editTurnoTurma" style="color: #555;">Turno</label>
+          </div>
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarTurma">Confirmar</button>
+          <div id="alertaModalEditarTurma" class="alert mt-3 d-none" style="text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. NOVO Modal: Gerenciar Disciplinas na Turma (Checkboxes) -->
+  <div class="modal fade" id="modalGerenciarDisciplinasDaTurma" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- modal-lg para mais espaço -->
+      <div class="modal-content"
+        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-header" style="border-bottom: 3px solid var(--cor-texto-borda); padding: 1rem 1.5rem;">
+          <h3 class="modal-title" style="font-size: 2.5rem;">Gerenciar disciplinas na turma</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="padding: 2rem;">
+          <div class="row">
+            <!-- Coluna da Lista de Disciplinas -->
+            <div class="col-md-7">
+              <h4 style="font-size: 1.8rem; opacity: 0.8;">Lista de disciplinas</h4>
+              <div class="disciplinas-list-box" id="listaDisciplinasCheckboxes">
+                <!-- Checkboxes serão injetados aqui pelo JS -->
+                <p>Carregando disciplinas...</p>
+              </div>
+            </div>
+            <!-- Coluna da Direita (vazia, para o botão) -->
+            <div class="col-md-5 d-flex align-items-end">
+              <button type="button" class="btn btn-custom w-100" id="btnSalvarDisciplinasDaTurma">
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/Secretaria/JS/turmas.js" defer></script>
+
+</body>
+
+</html>
