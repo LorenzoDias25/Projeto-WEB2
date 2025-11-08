@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Disciplinas</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="/Secretaria/CSS/disciplinas.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container mt-3 mb-3">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg content-block navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/Evento/index.html"><img src="/Assets/logo.png" style="height: 75px; width: auto;"
+            alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/Evento/index.html">Eventos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Secretaria
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Secretaria/alunos.html">Alunos</a></li>
+                <li><a class="dropdown-item" href="/Secretaria/disciplinas.html">Disciplinas</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                Adm
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Adm/contas.html">Contas</a></li>
+                <li><a class="dropdown-item" href="/Adm/funcionarios.html">Funcionários</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Perfil/perfil.html">Perfil</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Fim Navbar -->
+
+    <!-- Seção Principal -->
+    <section class="content-block">
+      <div class="row">
+
+        <!-- Coluna da Esquerda (Tabela Principal) -->
+        <div class="col-lg-8">
+
+          <!-- Busca e Filtros -->
+          <div class="input-group search-bar-custom mb-3">
+            <input type="text" class="form-control" placeholder="Pesquisar disciplina...">
+            <button class="btn" type="button">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+          <div class="row filter-group align-items-center">
+            <div class="col-auto">Pesquisar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioNome" value="nome" checked>
+                <label class="form-check-label" for="radioNome">Nome</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="pesquisarPor" id="radioTurno" value="turno">
+                <label class="form-check-label" for="radioTurno">Turno</label>
+              </div>
+            </div>
+          </div>
+          <div class="row filter-group align-items-center mb-3">
+            <div class="col-auto">Ordenar por:</div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioAZ" value="az" checked>
+                <label class="form-check-label" for="radioAZ">A-Z</label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ordenarPor" id="radioZA" value="za">
+                <label class="form-check-label" for="radioZA">Z-A</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela Principal de Disciplinas -->
+          <div class="table-scrollable">
+            <div class="table-responsive">
+              <table class="table table-custom text-center table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Turno</th>
+                    <th scope="col">Carga-Horaria</th>
+                    <th scope="col">Valor</th>
+                  </tr>
+                </thead>
+                <!-- Corpo da Tabela de Disciplinas -->
+                <tbody id="tabelaDisciplinasBody">
+                  <tr data-disciplina-id="D101">
+                    <td>D101</td>
+                    <td>Web 2</td>
+                    <td>Noite</td>
+                    <td>80h</td>
+                    <td>R$ 150,00</td>
+                  </tr>
+                  <tr data-disciplina-id="D102">
+                    <td>D102</td>
+                    <td>POO</td>
+                    <td>Manhã</td>
+                    <td>80h</td>
+                    <td>R$ 150,00</td>
+                  </tr>
+                  <tr data-disciplina-id="D103">
+                    <td>D103</td>
+                    <td>Redes</td>
+                    <td>Tarde</td>
+                    <td>40h</td>
+                    <td>R$ 100,00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Botões de Ação da Tabela Principal -->
+          <div class="d-flex justify-content-evenly action-buttons">
+            <button class="btn btn-custom" id="btnInserirDisciplina" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarDisciplina">
+              Inserir
+            </button>
+            <button class="btn btn-custom" id="btnEditarDisciplina" data-bs-toggle="modal"
+              data-bs-target="#modalGerenciarDisciplina" disabled>
+              Editar
+            </button>
+          </div>
+
+        </div>
+        <!-- Fim Coluna Esquerda -->
+
+        <!-- Coluna da Direita (Tabelas Secundárias) -->
+        <div class="col-lg-4 mt-4 mt-lg-0">
+
+          <!-- Caixa Alunos -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Alunos</h3>
+            <div class="table-scrollable">
+              <div class="table-responsive">
+                <table class="table table-custom text-center table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Turma</th>
+                    </tr>
+                  </thead>
+                  <!-- Corpo da Tabela de Alunos -->
+                  <tbody id="tabelaAlunosBody">
+                    <tr>
+                      <td colspan="2">Selecione uma disciplina.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button class="btn btn-custom" id="btnDesvincularAluno" disabled data-bs-toggle="modal"
+              data-bs-target="#modalDesvincular" data-action-type="aluno">
+              Desvincular
+            </button>
+          </div>
+          <!-- Fim Caixa Alunos -->
+
+          <!-- Caixa Grade Disciplinar -->
+          <div class="info-box">
+            <h3 class="text-center" style="font-size: 2rem;">Grade disciplinar</h3>
+            <div class="table-scrollable">
+              <div class="table-responsive">
+                <table class="table table-custom text-center table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Professor</th>
+                      <th scope="col">Turma</th>
+                      <th scope="col">Horário</th>
+                    </tr>
+                  </thead>
+                  <!-- Corpo da Tabela de Grade -->
+                  <tbody id="tabelaGradeBody">
+                    <tr>
+                      <td colspan="3">Selecione uma disciplina.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button class="btn btn-custom" id="btnDesvincularGrade" disabled data-bs-toggle="modal"
+              data-bs-target="#modalDesvincular" data-action-type="grade">
+              Desvincular
+            </button>
+          </div>
+          <!-- Fim Caixa Grade -->
+
+        </div>
+        <!-- Fim Coluna Direita -->
+
+      </div>
+    </section>
+  </div>
+
+
+  <!-- MODAIS (Coloque no final do <body>) -->
+
+  <!-- Modal Inserir/Editar Disciplina -->
+  <div class="modal fade" id="modalGerenciarDisciplina" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content"
+        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body" style="padding: 2rem;">
+          <h3 class="text-center mb-4" style="font-size: 2.5rem;" id="modalDisciplinaTitulo">Inserir Disciplina</h3>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editCodigo" placeholder="Código (Ex: D104)">
+            <label for="editCodigo" style="color: #555;">Código</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editNome" placeholder="Nome">
+            <label for="editNome" style="color: #555;">Nome</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editTurno" placeholder="Turno (Manhã, Tarde, Noite)">
+            <label for="editTurno" style="color: #555;">Turno</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editCarga" placeholder="Carga-Horária (Ex: 80h)">
+            <label for="editCarga" style="color: #555;">Carga-Horária</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="editValor" placeholder="Valor (Ex: 150.00)">
+            <label for="editValor" style="color: #555;">Valor</label>
+          </div>
+          <button type="button" class="btn btn-custom w-100 mt-3" id="btnSalvarDisciplina">Confirmar</button>
+          <div id="alertaModalDisciplina" class="alert mt-3 d-none" style="text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NOVO MODAL: Desvincular Aluno/Disciplina -->
+  <div class="modal fade" id="modalDesvincular" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content"
+        style="background-color: var(--cor-bloco-principal); border: 3px solid var(--cor-texto-borda); border-radius: 15px;">
+        <div class="modal-body text-center" style="padding: 2rem;">
+          <h3 id="desvincularMensagemPrincipal">O aluno será desvinculado</h3>
+          <p id="desvincularMensagemSecundaria">Será desvinculado da disciplina <strong>Nome da Disciplina</strong></p>
+          <button type="button" class="btn btn-custom w-100 mt-4" id="btnConfirmarDesvinculacao">Confirmar</button>
+          <div id="alertaModalDesvincular" class="alert mt-3 d-none" style="text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/Secretaria/JS/disciplinas.js" defer></script>
+
+</body>
+
+</html>
