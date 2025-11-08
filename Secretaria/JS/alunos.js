@@ -37,25 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
     disciplinasMatriculadas: [2, 4], // IDs: POO e Redes
   };
 
-  //Enum Botoes Alunos
-  const BtnAlunos = Object.freeze({
-    CADASTRAR: "cadastrar",
-    VISUALIZARL: "visualizar",
-    EDITAR: "editar",
-    DESATIVAR: "desativar",
-  });
-
-  //Enum Botoes Mensalidades
-  const BtnMensalidades = Object.freeze({
-    INSERIR: "inserir",
-    EDITAR: "editar",
-  });
-
-  //Enum Botoes Historico
-  const BtnHistorico = Object.freeze({
-    EDITAR: "editar",
-  });
-
   //tipo de alert
   const tipoAlert = Object.freeze({
     DANGER: "danger",
@@ -66,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Seletores da Tabela Principal ---
   const tabelaAlunosBody = document.getElementById("tabelaAlunosBody");
-  const btnVisualizarAluno = document.getElementById("btnVisualizarAluno");
   const btnEditarAluno = document.getElementById("btnEditarAluno");
   const btnDesativarAluno = document.getElementById("btnDesativarAluno");
 
@@ -102,6 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "listaDisciplinasCheckboxes"
   );
   const btnSalvarAluno = document.getElementById("btnSalvarAluno");
+  const alertaModalGerenciarAluno = document.getElementById(
+    "alertaModalGerenciarAluno"
+  );
 
   // Inputs - Dados Pessoais
   const alunoNome = document.getElementById("alunoNome");
@@ -217,11 +200,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // --- LÓGICA 2: BOTÃO "VISUALIZAR" (CARREGA TABELAS) ---
-  btnVisualizarAluno.addEventListener("click", function () {});
-
   // --- LÓGICA 3: SELEÇÃO TABELA HISTÓRICO ---
   tabelaHistoricoBody.addEventListener("click", function (event) {
+    console.log(true);
+
     const linhaClicada = event.target.closest("tr");
     if (!linhaClicada || linhaClicada.cells.length === 1) return; // Ignora msg de "carregando"
 
@@ -330,10 +312,83 @@ document.addEventListener("DOMContentLoaded", function () {
       // Carrega disciplinas (sem nenhuma marcada)
       carregarDisciplinas([]);
     }
+    alertaModalGerenciarAluno.classList.add("d-none");
   });
 
   // Confirmar Cadastro/Edicao Aluno
   btnSalvarAluno.addEventListener("click", function () {
+    if (alunoNome.value == "") {
+      mostrarAlerta(
+        "Nome em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoCPF.value == "") {
+      mostrarAlerta(
+        "CPF em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoEmail.value == "") {
+      mostrarAlerta(
+        "Email em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoCelular.value == "") {
+      mostrarAlerta(
+        "Celular em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoCPF.value == "") {
+      mostrarAlerta(
+        "Nascimento em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoRua.value == "") {
+      mostrarAlerta(
+        "Rua em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoNumero.value == "") {
+      mostrarAlerta(
+        "Numero em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoBairro.value == "") {
+      mostrarAlerta(
+        "Bairro em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoCidade.value == "") {
+      mostrarAlerta(
+        "Cidade em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    } else if (alunoCEP.value == "") {
+      mostrarAlerta(
+        "CEP em branco",
+        tipoAlert.DANGER,
+        alertaModalGerenciarAluno
+      );
+      return;
+    }
+
     // Coleta todos os dados do formulário
     const dadosPessoais = {
       nome: alunoNome.value,
@@ -373,7 +428,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Fecha o modal
-    bootstrap.Modal.getInstance(modalGerenciarAluno).hide();
+    mostrarAlerta(
+      "Operação concluída",
+      tipoAlert.SUCESS,
+      alertaModalGerenciarAluno
+    );
+
+    setTimeout(() => {
+      bootstrap.Modal.getInstance(modalGerenciarAluno).hide();
+    }, 500);
     // Reseta a seleção na tabela principal
     resetarSelecaoAluno();
   });
@@ -651,14 +714,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Função de Reset: Tabela Principal
-function resetarSelecaoAluno() {
-  btnEditarAluno.disabled = true;
-  btnDesativarAluno.disabled = true;
-  alunoSelecionado = null;
-  tabelaAlunosBody
-    .querySelectorAll("tr")
-    .forEach((row) => row.classList.remove("table-active"));
-}
+// function resetarSelecaoAluno() {
+//   btnEditarAluno.disabled = true;
+//   btnDesativarAluno.disabled = true;
+//   alunoSelecionado = null;
+//   tabelaAlunosBody
+//     .querySelectorAll("tr")
+//     .forEach((row) => row.classList.remove("table-active"));
+// }
 
 function mostrarAlerta(mensagem, tipo, modal) {
   modal.textContent = mensagem;

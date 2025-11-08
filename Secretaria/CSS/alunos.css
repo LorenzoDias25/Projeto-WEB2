@@ -185,19 +185,6 @@ body {
   ); /* Fundo levemente mais escuro para caixas internas */
 }
 
-#modalGerenciarAluno .form-control {
-  font-family: "Patrick Hand", cursive;
-  font-weight: bold;
-  font-size: 1.3rem; /* Fonte menor para caber mais campos */
-  border: 3px solid var(--cor-texto-borda);
-  border-radius: 10px;
-  min-height: calc(3.5rem + 2px);
-}
-
-#modalGerenciarAluno .form-control:disabled {
-  background-color: #f0f0f0;
-}
-
 .disciplinas-list-box {
   max-height: 400px;
   overflow-y: auto;
